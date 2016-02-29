@@ -1,0 +1,64 @@
+html,
+body {
+  background-color: #ddffff;
+  margin-top: 40px;
+  height: 100%;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+.center-block {
+  width: 300px;
+  padding: 10px;
+}
+
+.register_form h2,
+.login_form h2 {
+  margin-bottom: 15px;
+}
+
+.register_form ul,
+.login_form ul {
+  width: 50%;
+  list-style-type: none;
+  list-style-position: outside;
+}
+
+.register_form li,
+.login_form li {
+  padding: 4px;
+  position: relative;
+}
+
+.register_form label,
+.login_form label {
+    width:150px;
+    margin-top: 3px;
+    display:inline-block;
+    float:left;
+    padding:3px;
+}
+
+.register_form input[type="text"],
+.register_form input[type="password"],
+.login_form input[type="text"],
+.login_form input[type="number"],
+.login_form input[type="password"] {
+    width:220px;
+    margin-top: 3px;
+    padding:5px 8px;
+}
+
+.register_form button,
+.login_form button {
+  margin-top: 3px;
+  margin-bottom: 5px;
+}
