@@ -9,7 +9,7 @@
     </thead>
     {% for advert in adverts %}
       <tbody>
-        <tr> <td> {{ advert.title }} </td> <td> {{ advert.price }} </td> </tr>
+        <tr> <td> {{ advert.title }} </td> <td> {{ advert.price|number_format(2,'.',',') }} </td> </tr>
       </tbody>
     {% endfor %}
   </table>

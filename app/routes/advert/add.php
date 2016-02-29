@@ -19,7 +19,11 @@ $app->post('/addadvert', function() use ($app) {
   ]);
 
   if ($v->passes()) {
-    $advertId = $app->advert->createAdvert($title, $price, $app->auth->id);
+    $app->advert->create([
+      'title' => $title,
+      'price' => $price,
+      'user_id' => $app->auth->id
+    ]);
 
     $app->flash('global', 'New Advert added!');
     $app->response->redirect($app->urlFor('advert.viewall'));
