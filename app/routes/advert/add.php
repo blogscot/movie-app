@@ -15,7 +15,7 @@ $app->post('/addadvert', function() use ($app) {
 
   $v->validate([
     'title' => [$title, 'required|min(3)|max(20)'],
-    'price' => [$price, 'required|int|min(0)']
+    'price' => [$price, 'required|number|min(0)']
   ]);
 
   if ($v->passes()) {

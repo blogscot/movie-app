@@ -14,7 +14,7 @@
          </li>
          <li>
             <label for="price">price: </label>
-            <input type="number" name="price" id="price">
+            <input type="number" step="0.01" name="price" id="price">
             {% if errors.has('price') %} {{ errors.first('price') }} {% endif %}
          </li>         <li>
            <button class="btn btn-primary" type="submit">Add</button>
