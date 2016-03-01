@@ -26,11 +26,15 @@ CREATE TABLE `adverts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(60) DEFAULT NULL,
   `price` double DEFAULT NULL,
+  `category` varchar(20) DEFAULT 'General',
+  `description` varchar(512) DEFAULT NULL,
+  `ad_rate` double NOT NULL DEFAULT '0',
+  `isSold` tinyint(1) DEFAULT '0',
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +43,7 @@ CREATE TABLE `adverts` (
 
 LOCK TABLES `adverts` WRITE;
 /*!40000 ALTER TABLE `adverts` DISABLE KEYS */;
-INSERT INTO `adverts` VALUES (1,'Cheese',10,3,'2016-02-29 15:46:38','2016-02-29 15:46:38'),(6,'Bread',12,3,'2016-02-29 16:12:57','2016-02-29 16:12:57'),(7,'Beans',8,3,'2016-02-29 16:30:22','2016-02-29 16:30:22'),(8,'Spagetti',5,3,'2016-02-29 16:39:25','2016-02-29 16:39:25');
+INSERT INTO `adverts` VALUES (24,'One Flew Over The Cuckoo\'s Nest',12,'Thriller','1 2 3 4 5 6 7 8 9 0 1 2',10,0,23,'2016-03-01 13:44:59','2016-03-01 13:44:59'),(25,'Star Wars',6,'Scifi','A New Hope.',10.25,0,23,'2016-03-01 13:52:28','2016-03-01 13:52:28');
 /*!40000 ALTER TABLE `adverts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-29 17:40:18
+-- Dump completed on 2016-03-01 12:56:45
