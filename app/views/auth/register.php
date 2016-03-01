@@ -43,9 +43,6 @@
       <li>
        <button class="btn btn-primary" type="submit">Register</button>
       </li>
-      <li>
-        <p>* means required</p>
-      </li>
     </ul>
     <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
   </form>
