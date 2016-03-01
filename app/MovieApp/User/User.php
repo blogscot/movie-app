@@ -39,6 +39,6 @@ class User extends Eloquent{
    }
 
    public function adverts() {
-     return $this->hasOne('MovieApp\Advert\Advert', 'user_id');
+     return $this->hasMany('MovieApp\Advert\Advert', 'user_id');
    }
 }

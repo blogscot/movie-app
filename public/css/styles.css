@@ -32,6 +32,15 @@ body {
   list-style-position: outside;
 }
 
+select.movie_category {
+  border: 1px solid darkgrey;
+  font-size: 16px;
+}
+
+table.movie_table {
+  width: 500px;
+}
+
 .register_form li,
 .login_form li {
   padding: 4px;
