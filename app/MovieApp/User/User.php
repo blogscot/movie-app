@@ -12,8 +12,7 @@ class User extends Eloquent{
       'password',
       'firstname',
       'surname',
-      'email',
-      'password',
+      'email'
    ];
 
    public function hasPermission($permission){

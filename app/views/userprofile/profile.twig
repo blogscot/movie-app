@@ -1,0 +1,18 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}User Wallet{% endblock %}
+
+{% block content %}
+
+  <h2>User Profile</h2>
+  <div>
+    <a href="{{ urlFor('user.wallet') }}">View My Wallet</a>
+  </div>
+  <div>
+    <a href="{{ urlFor('advert.viewbyuser')}}">View My Adverts</a>
+  </div>
+  <div>
+    <a href="#">View My Purchases</a>
+  </div>
+
+{% endblock %}

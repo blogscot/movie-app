@@ -8,6 +8,9 @@ require INC_ROOT . '/app/routes/auth/logout.php';
 require INC_ROOT . '/app/routes/auth/password/recover.php';
 require INC_ROOT . '/app/routes/auth/password/reset.php';
 
+require INC_ROOT . '/app/routes/userprofile/profile.php';
+require INC_ROOT . '/app/routes/userprofile/wallet.php';
+
 require INC_ROOT . '/app/routes/advert/add.php';
 require INC_ROOT . '/app/routes/advert/viewall.php';
 require INC_ROOT . '/app/routes/advert/viewbyuser.php';

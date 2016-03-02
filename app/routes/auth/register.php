@@ -3,7 +3,7 @@
 use MovieApp\User\User_Permission;
 
 $app->get('/register', $guest(), function() use ($app){
-   $app->render('auth/register.php');
+   $app->render('auth/register.twig');
 })->name('auth.register');
 
 $app->post('/register', $guest(), function() use ($app){
@@ -45,7 +45,7 @@ $app->post('/register', $guest(), function() use ($app){
       return $app->response->redirect($app->urlFor('auth.login'));
    }
 
-   $app->render('auth/register.php', [
+   $app->render('auth/register.twig', [
       'errors' => $v->errors(),
       'request' => $request
    ]);
