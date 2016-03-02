@@ -14,10 +14,14 @@ class Advert extends Eloquent {
     'description',
     'ad_rate',
     'isSold',
-    'user_id'
+    'seller_id'
   ];
 
   public function advert() {
     return $this->belongsTo('User');
+  }
+
+  public function calculate_ad_rate($description) {
+    return str_word_count($description) / 12 + 10;
   }
 }

@@ -23,25 +23,15 @@
         <label for="title">Category: </label>
         <select class="movie_category" name="category">
           <option value="Romance"
-          {% if advert.category == 'Romance' %}
-            selected
-          {% endif %}>Romance</option>
+          {% if advert.category == 'Romance' %} selected {% endif %}>Romance</option>
           <option value="Thriller"
-            {% if advert.category == 'Thriller' %}
-              selected
-            {% endif %}>Thriller</option>
+          {% if advert.category == 'Thriller' %} selected {% endif %}>Thriller</option>
           <option value="Comedy"
-            {% if advert.category == 'Comedy' %}
-              selected
-            {% endif %}>Comedy</option>
+            {% if advert.category == 'Comedy' %} selected {% endif %}>Comedy</option>
           <option value="Horror"
-            {% if advert.category == 'Horror' %}
-              selected
-            {% endif %}>Horror</option>
+            {% if advert.category == 'Horror' %} selected {% endif %}>Horror</option>
           <option value="Scifi"
-            {% if advert.category == 'Scifi' %}
-              selected
-            {% endif %}>SciFi</option>
+            {% if advert.category == 'Scifi' %} selected {% endif %}>SciFi</option>
         </select>
       </li>
       <li>

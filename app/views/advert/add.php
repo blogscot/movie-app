@@ -21,11 +21,11 @@
          <li>
            <label for="title">Category: </label>
            <select class="movie_category" name="category">
-             <option value="Romance">Romance</option>
-             <option value="Thriller">Thriller</option>
              <option value="Comedy">Comedy</option>
              <option value="Horror">Horror</option>
+             <option value="Romance">Romance</option>
              <option value="Scifi">SciFi</option>
+             <option value="Thriller">Thriller</option>
            </select>
          </li>
          <li>
@@ -33,7 +33,7 @@
            <textarea name="description" rows="8" cols="40"></textarea>
          </li>
          <li>
-           <button class="btn btn-primary" type="submit">Add</button>
+           <button class="btn btn-primary" type="submit">Create</button>
          </li>
       </ul>
       <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">

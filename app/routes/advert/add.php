@@ -27,7 +27,7 @@ $app->post('/addadvert', function() use ($app) {
   if ($v->passes()) {
 
     // calculate daily ad rate
-    $ad_rate = str_word_count($description) / 12 + 10;
+    $ad_rate = $app->advert->calculate_ad_rate($description);
 
     $advert = new Advert;
     $advert->title = $title;
@@ -35,7 +35,7 @@ $app->post('/addadvert', function() use ($app) {
     $advert->category = $category;
     $advert->description = $description;
     $advert->ad_rate = $ad_rate;
-    $advert->user_id = $app->auth->id;
+    $advert->seller_id = $app->auth->id;
     $advert->save();
 
     $app->flash('global', 'New Advert added!');
