@@ -31,14 +31,3 @@ $admin = function () use ($app)
       }
    };
 };
-
-$privileged = function() use ($app)
-{
-   return function() use ($app)
-   {
-      if(!$app->auth || !$app->auth->isPrivileged())
-      {
-         $app->redirect($app->urlFor('home'));
-      }
-   };
-};

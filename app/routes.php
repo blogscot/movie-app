@@ -10,5 +10,6 @@ require INC_ROOT . '/app/routes/auth/password/reset.php';
 
 require INC_ROOT . '/app/routes/advert/add.php';
 require INC_ROOT . '/app/routes/advert/viewall.php';
+require INC_ROOT . '/app/routes/advert/viewbyuser.php';
 require INC_ROOT . '/app/routes/advert/update.php';
 require INC_ROOT . '/app/routes/advert/remove.php';

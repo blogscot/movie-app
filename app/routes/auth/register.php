@@ -28,7 +28,6 @@ $app->post('/register', $guest(), function() use ($app){
       'password2' => [$password2, 'required']
    ]);
 
-
    if($v->passes()){
       $identifier = $app->randomLib->generateString(128);
 

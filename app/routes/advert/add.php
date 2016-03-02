@@ -3,7 +3,7 @@
 use MovieApp\Advert\Advert;
 
 $app->get('/addadvert', function() use ($app) {
-  $app->render('advert/add.php');
+  $app->render('advert/add.twig');
 })->name('advert.add');
 
 $app->post('/addadvert', function() use ($app) {
@@ -42,7 +42,7 @@ $app->post('/addadvert', function() use ($app) {
     $app->response->redirect($app->urlFor('advert.viewall'));
   }
 
-  $app->render('advert/add.php', [
+  $app->render('advert/add.twig', [
      'errors' => $v->errors(),
      'request' => $request
   ]);

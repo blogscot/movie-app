@@ -3,7 +3,7 @@
 $app->get('/update/:id', function($id) use ($app) {
   $advert = $app->advert->where('id', $id)->first();
 
-  $app->render('advert/update.php', [
+  $app->render('advert/update.twig', [
     'advert' => $advert
   ]);
 })->name('advert.update');
@@ -44,7 +44,7 @@ $app->post('/update/:id', function($id) use ($app) {
       $app->response->redirect($app->urlFor('advert.viewall'));
     }
 
-    $app->render('advert/add.php', [
+    $app->render('advert/add.twig', [
        'errors' => $v->errors(),
        'request' => $request
     ]);

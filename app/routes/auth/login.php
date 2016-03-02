@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 
 $app->get('/login', $guest(), function() use ($app){
-   $app->render('auth/login.php');
+   $app->render('auth/login.twig');
 })->name('auth.login');
 
 $app->post('/login', $guest(), function() use ($app){
@@ -36,7 +36,7 @@ $app->post('/login', $guest(), function() use ($app){
       }
    }
 
-   $app->render('auth/login.php', [
+   $app->render('auth/login.twig', [
       'errors' => $v->errors(),
       'request' => $request
    ]);
