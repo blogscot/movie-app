@@ -3,6 +3,17 @@
 {% block title %}View Adverts{% endblock %}
 
 {% block content %}
+
+  <form class="login_form" action="{{ urlFor('advert.viewall.post')}}" method="post">
+    <select class="default_category" name="filter">
+      <option value="category">Category</option>
+      <option value="title">Title</option>
+      <option value="price">Price</option>
+    </select>
+    <button class="btn btn=primary" type="submit">Search</button>
+    <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+  </form>
+
   <table class="movie_table">
     <thead>
       <tr>

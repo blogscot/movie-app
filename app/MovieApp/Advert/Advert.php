@@ -17,11 +17,16 @@ class Advert extends Eloquent {
     'seller_id'
   ];
 
-  public function advert() {
-    return $this->belongsTo('User');
-  }
-
   public function calculate_ad_rate($description) {
     return str_word_count($description) / 12 + 10;
+  }
+
+  public function order_by_filter($filter) {
+    return $this->orderBy($filter, 'asc')->get();
+  }
+
+  // Relationships
+  public function advert() {
+    return $this->belongsTo('User');
   }
 }

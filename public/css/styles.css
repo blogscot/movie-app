@@ -32,7 +32,7 @@ body {
   list-style-position: outside;
 }
 
-select.movie_category {
+select.default_category {
   border: 1px solid darkgrey;
   font-size: 16px;
 }
