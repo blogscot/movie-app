@@ -1,0 +1,37 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}View Advert{% endblock %}
+
+{% block content %}
+
+<form class="login_form" action="{{ urlFor('advert.view.post', {id: advert.id}) }}" method="post" autocomplete="off">
+   <ul class="center-block">
+     <h2>Buy Movie</h2>
+      <li>
+         <label for="title">Title: </label>
+         <input type="text" name="title" id="title" value='{{ advert.title }}' readonly>
+      </li>
+      </li>
+      <li>
+         <label for="price">Price: </label>
+         <input type="number" step="0.01" name="price" id="price"
+         value="{{ advert.price|number_format(2,'.',',') }}" readonly>
+      </li>
+      <li>
+        <label for="title">Category: </label>
+        <select class="default_category" name="category" readonly>
+          <option selected>{{ advert.category }}</option>
+        </select>
+      </li>
+      <li>
+        <label for="title">Description: </label>
+        <textarea readonly name="description" rows="8" cols="40">{{ advert.description }}</textarea>
+      </li>
+      <li>
+        <button class="btn btn-primary" type="submit">Buy</button>
+      </li>
+   </ul>
+   <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+</form>
+
+{% endblock %}
