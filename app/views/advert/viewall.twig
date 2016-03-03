@@ -4,19 +4,17 @@
 
 {% block content %}
 
-  <form class="login_form" action="{{ urlFor('advert.viewall.post')}}" method="post">
-    <select class="default_category" name="filter">
-      <option value="category">Category</option>
-      <option value="title">Title</option>
-      <option value="price">Price</option>
-    </select>
-    <button class="btn btn=primary" type="submit">Search</button>
+  <form class="default_form" action="{{ urlFor('advert.viewall.post')}}" method="post">
+    <label for="search_term">Search:</label>
+    <input type="text" name="search_term" id="search_term">
+    <button class="btn btn-primary" type="submit">Go</button>
     <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
   </form>
 
   <table class="movie_table">
     <thead>
       <tr>
+        <th><strong>Seller</strong></th>
         <th><strong>Category</strong></th>
         <th><strong>Movie Title</strong></th>
         <th><strong>Price</strong></th>
@@ -27,10 +25,11 @@
     {% for advert in adverts %}
       <tbody>
         <tr>
+          <td>{{ auth.getUsernameById(advert.seller_id) }}</td>
           <td>{{ advert.category }}</td>
           <td>{{ advert.title }}</td>
           <td>{{ advert.price|number_format(2,'.',',') }}</td>
-          <td><a href="{{ urlFor('advert.view', {id: advert.id}) }}">View</a></td>
+          <td><a href="{{ urlFor('advert.view', {id: advert.id}) }}">View Details</a></td>
         </tr>
       </tbody>
     {% endfor %}

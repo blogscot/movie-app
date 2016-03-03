@@ -20,13 +20,11 @@ body {
   padding: 10px;
 }
 
-.register_form h2,
-.login_form h2 {
+.default_form h2 {
   margin-bottom: 15px;
 }
 
-.register_form ul,
-.login_form ul {
+.default_form ul {
   width: 50%;
   list-style-type: none;
   list-style-position: outside;
@@ -41,14 +39,12 @@ table.movie_table {
   width: 500px;
 }
 
-.register_form li,
-.login_form li {
+.default_form li {
   padding: 4px;
   position: relative;
 }
 
-.register_form label,
-.login_form label {
+.default_form label {
     width:150px;
     margin-top: 3px;
     display:inline-block;
@@ -56,18 +52,15 @@ table.movie_table {
     padding:3px;
 }
 
-.register_form input[type="text"],
-.register_form input[type="password"],
-.login_form input[type="text"],
-.login_form input[type="number"],
-.login_form input[type="password"] {
+.default_form input[type="text"],
+.default_form input[type="number"],
+.default_form input[type="password"] {
     width:220px;
     margin-top: 3px;
     padding:5px 8px;
 }
 
-.register_form button,
-.login_form button {
+.default_form button {
   margin-top: 3px;
   margin-bottom: 5px;
 }

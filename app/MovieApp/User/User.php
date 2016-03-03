@@ -19,16 +19,25 @@ class User extends Eloquent{
       return (bool) $this->permissions->{$permission};
    }
 
+   // is the current user an Admin user?
    public function isAdmin(){
      return $this->hasPermission('is_admin');
    }
 
+   // Get the current user's full name
    public function getFullName(){
       return "{$this->firstname} {$this->surname}";
    }
 
+   // Get the current user's username
    public function getUsername(){
       return $this->username;
+   }
+
+   // Get the username for the a user's $id
+   public function getUsernameById($id) {
+      $user = $this->where('id', $id)->first();
+      return $user->username;
    }
 
    // Relationships

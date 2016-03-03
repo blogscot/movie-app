@@ -1,8 +1,7 @@
 <?php
 
 $app->get('/viewadverts', function() use ($app) {
-  $filter = 'category';
-  $adverts = $app->advert->order_by_filter($filter);
+  $adverts = $app->advert->get_all();
 
   $app->render('advert/viewall.twig', [
     'adverts' => $adverts
@@ -12,8 +11,8 @@ $app->get('/viewadverts', function() use ($app) {
 $app->post('/viewadverts', function() use ($app) {
   $request = $app->request;
 
-  $filter = $request->post('filter');
-  $adverts = $app->advert->order_by_filter($filter);
+  $search_term = $request->post('search_term');
+  $adverts = $app->advert->find_by($search_term);
 
   $app->render('advert/viewall.twig', [
     'adverts' => $adverts

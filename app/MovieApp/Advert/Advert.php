@@ -21,11 +21,21 @@ class Advert extends Eloquent {
     return str_word_count($description) / 12 + 10;
   }
 
-  public function order_by_filter($filter) {
-    return $this->orderBy($filter, 'asc')->get();
+  public function get_all() {
+    return $this->get();
+  }
+
+  public function find_by($search_term) {
+    return $this
+      ->join('users', 'users.id', '=', 'adverts.seller_id')
+      ->where('username', 'like', '%'.$search_term.'%')
+      ->orWhere('category', 'like', '%'.$search_term.'%')
+      ->orWhere('title', 'like', '%'.$search_term.'%')
+      ->get();
   }
 
   // Relationships
+
   public function advert() {
     return $this->belongsTo('User');
   }
