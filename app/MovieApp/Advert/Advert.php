@@ -25,6 +25,7 @@ class Advert extends Eloquent {
     return $this->get();
   }
 
+  // get a filtered list of adverts, by username, category or title
   public function find_by($search_term) {
     return $this
       ->join('users', 'users.id', '=', 'adverts.seller_id')
