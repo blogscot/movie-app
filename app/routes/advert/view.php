@@ -1,7 +1,8 @@
 <?php
 
 $app->get('/viewadvert/:id', function($id) use ($app) {
-  $advert = $app->advert->where('id', $id)->first();
+  $advert = $app->advert->find_by_id($id);
+  
   $app->render('advert/view.twig',[
     'advert' => $advert
   ]);

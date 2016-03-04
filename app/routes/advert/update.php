@@ -1,7 +1,7 @@
 <?php
 
 $app->get('/update/:id', function($id) use ($app) {
-  $advert = $app->advert->where('id', $id)->first();
+  $advert = $app->advert->find_by_id($id);
 
   $app->render('advert/update.twig', [
     'advert' => $advert
@@ -41,7 +41,7 @@ $app->post('/update/:id', function($id) use ($app) {
       $advert->save();
 
       $app->flash('global', 'Advert updated!');
-      $app->response->redirect($app->urlFor('advert.viewall'));
+      $app->response->redirect($app->urlFor('advert.viewbyuser'));
     }
 
     $app->render('advert/add.twig', [
