@@ -39,6 +39,12 @@ $app->post('/register', $guest(), function() use ($app){
          'password' => $app->hash->password($password1)
       ]);
 
+      // Each new user is given a wallet
+      $app->wallet->create([
+        'balance' => 10,   // Some initial test money
+        'user_id' => $user->id
+      ]);
+
       $user->permissions()->create(User_Permission::$defaults);
 
       $app->flash('global', 'You have been registered.');

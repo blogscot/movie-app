@@ -11,6 +11,7 @@ use RandomLib\Factory as RandomLib;
 use MovieApp\User\User;
 
 use MovieApp\Advert\Advert;
+use MovieApp\Wallet\Wallet;
 
 use MovieApp\Helpers\Hash;
 
@@ -54,6 +55,10 @@ $app->container->set('user', function(){
 
 $app->container->set('advert', function(){
    return new Advert;
+});
+
+$app->container->set('wallet', function(){
+   return new Wallet;
 });
 
 $app->container->set('hash', function() use ($app){

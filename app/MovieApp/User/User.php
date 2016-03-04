@@ -49,4 +49,8 @@ class User extends Eloquent{
    public function adverts() {
      return $this->hasMany('MovieApp\Advert\Advert', 'seller_id');
    }
+
+  public function wallet() {
+    return $this->hasMany('MovieApp\Wallet\Wallet', 'user_id');
+  }
 }
