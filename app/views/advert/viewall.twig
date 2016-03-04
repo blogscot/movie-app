@@ -4,6 +4,10 @@
 
 {% block content %}
 
+  {% if not auth %}
+    <p>Please login to see more details</p>
+  {% endif %}
+
   <form class="default_form" action="{{ urlFor('advert.viewall.post')}}" method="post">
     <label for="search_term">Search:</label>
     <input type="text" name="search_term" id="search_term">
@@ -14,7 +18,9 @@
   <table class="movie_table">
     <thead>
       <tr>
+        {% if auth %}
         <th><strong>Seller</strong></th>
+        {% endif %}
         <th><strong>Category</strong></th>
         <th><strong>Movie Title</strong></th>
         <th><strong>Price</strong></th>
@@ -22,14 +28,18 @@
         <th></th>
       </tr>
     </thead>
-    {% for advert in adverts %}
+    {% for advert in adverts if not advert.isSold %}
       <tbody>
         <tr>
-          <td>{{ auth.getUsernameById(advert.seller_id) }}</td>
+          {% if auth %}
+            <td>{{ auth.getUsernameById(advert.seller_id) }}</td>
+          {% endif %}
           <td>{{ advert.category }}</td>
           <td>{{ advert.title }}</td>
           <td>{{ advert.price|number_format(2,'.',',') }}</td>
-          <td><a href="{{ urlFor('advert.view', {id: advert.id}) }}">View Details</a></td>
+          {% if auth %}
+            <td><a href="{{ urlFor('advert.view', {id: advert.id}) }}">View Details</a></td>
+          {% endif %}
         </tr>
       </tbody>
     {% endfor %}

@@ -64,3 +64,8 @@ table.movie_table {
   margin-top: 3px;
   margin-bottom: 5px;
 }
+
+a.back-btn {
+  color: #fff;
+  text-decoration: none !important;
+}
