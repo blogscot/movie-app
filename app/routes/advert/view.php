@@ -30,7 +30,7 @@ $app->post('/viewadvert/:id', function($id) use ($app) {
     $advert->save();
 
     // record the sale transaction
-    $transaction->buyer_id = $app->auth->id;
+    $transaction->buyer_id = $buyer;
     $transaction->advert_id = $advert->id;
     $transaction->save();
 

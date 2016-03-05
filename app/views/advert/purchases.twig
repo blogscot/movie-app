@@ -1,0 +1,27 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}My Purchases{% endblock %}
+
+{% block content %}
+  <h2> My Purchases</h2>
+
+  {% if purchases is empty %}
+    <p>You have no purchases. So sad!</p>
+  {% endif %}
+
+  {% for purchase in purchases %}
+    <div>
+      <strong>Seller:</strong> {{ auth.getUsernameById(purchase.seller_id) }}
+    </div>
+    <div>
+      <strong>Title:</strong> {{ purchase.title }}
+    </div>
+    <div>
+      <strong>Price:</strong> &pound{{ purchase.price|number_format(2,'.',',') }}
+    </div>
+    <div>
+      <strong>Date of Purchase:</strong> {{ purchase.updated_at|date("m/d/Y") }}
+    </div>
+    <br/>
+  {% endfor %}
+{% endblock %}

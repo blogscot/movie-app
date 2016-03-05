@@ -1,10 +1,15 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}Create My Adverts{% endblock %}
+{% block title %}View My Adverts{% endblock %}
 
 {% block content %}
-  <table class="movie_table">
-    <thead>
+  <h2>My Adverts</h2>
+
+  {% if adverts is empty %}
+    <p>You currently have no adverts.</p>
+  {% else %}
+    <table class="movie_table">
+      <thead>
       <tr>
         <th><strong>Category</strong></th>
         <th><strong>Movie Title</strong></th>
@@ -12,18 +17,20 @@
         <th></th>
         <th></th>
       </tr>
-    </thead>
+      </thead>
     {% for advert in adverts %}
       <tbody>
-        <tr>
-          <td>{{ advert.category }}</td>
-          <td>{{ advert.title }}</td>
-          <td>{{ advert.price|number_format(2,'.',',') }}</td>
-          <td><a href="{{ urlFor('advert.update', {id: advert.id}) }}">Update</a></td>
-          <td><a href="{{ urlFor('advert.remove', {id: advert.id}) }}">Remove</a></td>
-        </tr>
+      <tr>
+        <td>{{ advert.category }}</td>
+        <td>{{ advert.title }}</td>
+        <td>{{ advert.price|number_format(2,'.',',') }}</td>
+        <td><a href="{{ urlFor('advert.update', {id: advert.id}) }}">Update</a></td>
+        <td><a href="{{ urlFor('advert.remove', {id: advert.id}) }}">Remove</a></td>
+      </tr>
       </tbody>
     {% endfor %}
-  </table>
+    </table>
+  {% endif %}
+
 
 {% endblock %}
