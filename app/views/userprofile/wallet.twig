@@ -7,4 +7,16 @@
   <p>
     Your current balance is: &pound;{{ wallet.balance }}
   </p>
+  <hr/>
+  <form class="default_form" action="{{ urlFor('user.wallet.post')}}" method="post" autocomplete="off">
+  <ul>
+    <li>
+      <label for="funds">Add Funds: </label>
+      <input type="number" step="0.01" name="funds" id="funds">
+      {% if errors.has('funds') %} {{ errors.first('funds') }} {% endif %}
+      <button class="btn btn-primary" type="submit">Add</button>
+    </li>
+    <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+  </ul>
+  </form>
 {% endblock %}
