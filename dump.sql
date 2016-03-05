@@ -43,8 +43,35 @@ CREATE TABLE `adverts` (
 
 LOCK TABLES `adverts` WRITE;
 /*!40000 ALTER TABLE `adverts` DISABLE KEYS */;
-INSERT INTO `adverts` VALUES (27,'Rocky',1.23,'Action','The story of rambo before Rambo.',10.5,0,3,'2016-03-03 11:09:49','2016-03-03 12:09:49'),(28,'Rambo II',3.5,'Thriller','The sequel.',10.1666666667,0,2,'2016-03-02 17:54:10','2016-03-02 18:53:34'),(29,'Rambo III',3.75,'Action','Yet more rambo.',10.25,0,2,'2016-03-03 09:55:45','2016-03-03 10:55:45'),(30,'Rocky',10,'Action','This is the best boxing movie ever!',10.5833333333,0,2,'2016-03-03 09:55:31','2016-03-03 10:55:31'),(31,'2001',1.99,'Scifi','A Space Odyssey.',10.25,0,2,'2016-03-03 11:02:35','2016-03-03 12:02:35'),(32,'A Wonderful Life',2.5,'Family','Possibly one of the best family movies ever made. Starring Jimmy Stewart.',11,0,3,'2016-03-03 12:11:05','2016-03-03 12:11:05'),(33,'The Wizard of Oz',3.95,'Family','The flying monkeys is the best bit.',10.5833333333,0,22,'2016-03-03 17:45:30','2016-03-03 18:45:30');
+INSERT INTO `adverts` VALUES (27,'Rocky',20.95,'Action','The story of rambo before Rambo.',10.5,0,3,'2016-03-04 12:52:30','2016-03-04 13:52:30'),(28,'Rambo II',3.5,'Thriller','The sequel.',10.1666666667,0,2,'2016-03-04 12:53:53','2016-03-04 13:53:19'),(29,'Rambo III',3.75,'Action','Yet more rambo.',10.25,1,2,'2016-03-05 11:23:13','2016-03-05 12:23:13'),(30,'Rocky',10,'Action','This is the best boxing movie ever!',10.5833333333,0,2,'2016-03-03 09:55:31','2016-03-03 10:55:31'),(31,'2001',1.99,'Scifi','A Space Odyssey.',10.25,0,2,'2016-03-05 11:22:35','2016-03-05 12:15:59'),(32,'A Wonderful Life',2.75,'Family','Possibly one of the best family movies ever made. Starring Jimmy Stewart.',11,0,3,'2016-03-05 11:22:46','2016-03-04 13:43:03'),(33,'The Wizard of Oz',3.95,'Family','The flying monkeys is the best bit.',10.5833333333,0,23,'2016-03-04 11:42:59','2016-03-03 18:45:30');
 /*!40000 ALTER TABLE `adverts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `transactions`
+--
+
+DROP TABLE IF EXISTS `transactions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `transactions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `advert_id` int(11) NOT NULL,
+  `buyer_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transactions`
+--
+
+LOCK TABLES `transactions` WRITE;
+/*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
+INSERT INTO `transactions` VALUES (2,29,3,'2016-03-05 12:23:13','2016-03-05 12:23:13');
+/*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -127,7 +154,7 @@ CREATE TABLE `wallets` (
 
 LOCK TABLES `wallets` WRITE;
 /*!40000 ALTER TABLE `wallets` DISABLE KEYS */;
-INSERT INTO `wallets` VALUES (1,10,1,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(2,10,2,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(3,10,3,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(4,10,23,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(5,10,26,'2016-03-04 12:07:58','2016-03-04 12:07:58');
+INSERT INTO `wallets` VALUES (1,10,1,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(2,13.75,2,'2016-03-04 12:07:58','2016-03-05 12:23:13'),(3,6.25,3,'2016-03-04 12:07:58','2016-03-05 12:23:13'),(4,10,23,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(5,10,26,'2016-03-04 12:07:58','2016-03-04 12:07:58');
 /*!40000 ALTER TABLE `wallets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -140,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-04 11:11:36
+-- Dump completed on 2016-03-05 11:26:14

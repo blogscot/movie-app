@@ -50,6 +50,10 @@ class User extends Eloquent{
      return $this->hasMany('MovieApp\Advert\Advert', 'seller_id');
    }
 
+  public function transactions() {
+    return $this->hasOne('MovieApp\Transaction\Transaction', 'buyer_id');
+  }
+
   public function wallet() {
     return $this->hasMany('MovieApp\Wallet\Wallet', 'user_id');
   }

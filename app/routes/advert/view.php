@@ -10,19 +10,29 @@ $app->get('/viewadvert/:id', function($id) use ($app) {
 
 $app->post('/viewadvert/:id', function($id) use ($app) {
   $advert = $app->advert->find_by_id($id);
-  $wallet = $app->wallet->get_user_balance($app->auth->id);
+  $buyer = $app->auth->id;
+  $seller = $advert->seller_id;
+  $wallet_buyer = $app->wallet->get_user_balance($buyer);
+  $wallet_seller = $app->wallet->get_user_balance($seller);
+  $transaction = $app->transaction;
 
   // the user wants to buy the selected movie
   // check the user has enough money
-  if ($advert->price < $wallet->balance) {
-    $wallet->balance -= $advert->price;
-    $wallet->save();
+  if ($advert->price < $wallet_buyer->balance) {
+
+    $wallet_buyer->balance -= $advert->price;
+    $wallet_seller->balance += $advert->price;
+    $wallet_buyer->save();
+    $wallet_seller->save();
 
     // mark the movie as sold
     $advert->isSold = true;
     $advert->save();
 
-    // TODO record the sale transaction
+    // record the sale transaction
+    $transaction->buyer_id = $app->auth->id;
+    $transaction->advert_id = $advert->id;
+    $transaction->save();
 
     $app->flash('global', 'Your purchase is complete.');
     return $app->response->redirect($app->urlFor('advert.viewall'));

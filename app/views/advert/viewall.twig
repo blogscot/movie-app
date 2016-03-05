@@ -36,7 +36,7 @@
           {% endif %}
           <td>{{ advert.category }}</td>
           <td>{{ advert.title }}</td>
-          <td>{{ advert.price|number_format(2,'.',',') }}</td>
+          <td>&pound;{{ advert.price|number_format(2,'.',',') }}</td>
           {% if auth %}
             <td><a href="{{ urlFor('advert.view', {id: advert.id}) }}">View Details</a></td>
           {% endif %}

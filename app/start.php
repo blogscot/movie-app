@@ -9,10 +9,9 @@ use Noodlehaus\Config;
 use RandomLib\Factory as RandomLib;
 
 use MovieApp\User\User;
-
 use MovieApp\Advert\Advert;
+use MovieApp\Transaction\Transaction;
 use MovieApp\Wallet\Wallet;
-
 use MovieApp\Helpers\Hash;
 
 use MovieApp\Validation\Validator;
@@ -55,6 +54,10 @@ $app->container->set('user', function(){
 
 $app->container->set('advert', function(){
    return new Advert;
+});
+
+$app->container->set('transaction', function(){
+   return new Transaction;
 });
 
 $app->container->set('wallet', function(){
