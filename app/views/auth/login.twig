@@ -12,8 +12,8 @@
             {% if errors.has('identifier') %} {{ errors.first('identifier') }} {% endif %}
          </li>
          <li>
-            <td><label for="password">Password: </label></td>
-            <td><input type="password" name="password" id="password"></td>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password">
             {% if errors.has('password') %} {{ errors.first('password') }} {% endif %}
          </li>
          <li>
