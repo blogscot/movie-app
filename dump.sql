@@ -26,6 +26,7 @@ CREATE TABLE `adverts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(60) DEFAULT NULL,
   `price` double DEFAULT NULL,
+  `image_url` varchar(256) DEFAULT NULL,
   `category` varchar(20) DEFAULT 'General',
   `description` varchar(512) DEFAULT NULL,
   `ad_rate` double NOT NULL DEFAULT '0',
@@ -34,7 +35,7 @@ CREATE TABLE `adverts` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +44,7 @@ CREATE TABLE `adverts` (
 
 LOCK TABLES `adverts` WRITE;
 /*!40000 ALTER TABLE `adverts` DISABLE KEYS */;
-INSERT INTO `adverts` VALUES (27,'Rocky',20.95,'Action','The story of rambo before Rambo.',10.5,0,3,'2016-03-04 12:52:30','2016-03-04 13:52:30'),(28,'Rambo II',3.5,'Thriller','The sequel.',10.1666666667,0,2,'2016-03-04 12:53:53','2016-03-04 13:53:19'),(29,'Rambo III',3.75,'Action','Yet more rambo.',10.25,1,2,'2016-03-05 11:23:13','2016-03-05 12:23:13'),(30,'Rocky',10,'Action','This is the best boxing movie ever!',10.5833333333,0,2,'2016-03-03 09:55:31','2016-03-03 10:55:31'),(31,'2001',1.99,'Scifi','A Space Odyssey.',10.25,0,2,'2016-03-05 11:22:35','2016-03-05 12:15:59'),(32,'A Wonderful Life',2.75,'Family','Possibly one of the best family movies ever made. Starring Jimmy Stewart.',11,0,3,'2016-03-05 11:22:46','2016-03-04 13:43:03'),(33,'The Wizard of Oz',3.95,'Family','The flying monkeys is the best bit.',10.5833333333,0,23,'2016-03-04 11:42:59','2016-03-03 18:45:30');
+INSERT INTO `adverts` VALUES (36,'Star Wars',2.99,'https://cdn1.vox-cdn.com/thumbor/c4MtCAj5kZRnJUcZSd8YvgfIXyE=/cdn0.vox-cdn.com/uploads/chorus_asset/file/4238767/tfa-poster-japan.0.jpg','Scifi','Great!',10.0833333333,0,3,'2016-03-09 16:52:05','2016-03-09 17:52:05'),(37,'Batman Superman',4.55,'https://cdn3.vox-cdn.com/thumbor/EYJO7OYrdPjrgg2STZ8N7xr0YC0=/cdn0.vox-cdn.com/uploads/chorus_asset/file/4176900/starwarsposter-1.0.jpg','Action','Batman rules!',10.1666666667,0,1,'2016-03-09 17:42:52','2016-03-09 17:42:52');
 /*!40000 ALTER TABLE `adverts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,7 @@ CREATE TABLE `transactions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +71,7 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (2,29,3,'2016-03-05 12:23:13','2016-03-05 12:23:13');
+INSERT INTO `transactions` VALUES (2,29,3,'2016-03-05 12:23:13','2016-03-05 12:23:13'),(3,28,3,'2016-03-05 12:31:56','2016-03-05 12:31:56'),(4,27,27,'2016-03-05 13:53:35','2016-03-05 13:53:35'),(5,31,3,'2016-03-09 12:08:10','2016-03-09 12:08:10');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +89,7 @@ CREATE TABLE `user_permissions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +98,7 @@ CREATE TABLE `user_permissions` (
 
 LOCK TABLES `user_permissions` WRITE;
 /*!40000 ALTER TABLE `user_permissions` DISABLE KEYS */;
-INSERT INTO `user_permissions` VALUES (19,22,0,'2016-02-20 01:49:19','2016-02-20 01:49:19'),(18,3,0,'2016-02-20 01:48:23','2016-02-20 01:48:23'),(17,2,0,'2016-02-20 01:47:37','2016-02-20 01:47:37'),(16,1,0,'2016-02-19 23:48:32','2016-02-19 23:48:32'),(20,23,1,'2016-02-29 16:40:24','2016-02-29 16:40:24'),(21,26,0,'2016-03-04 12:07:58','2016-03-04 12:07:58');
+INSERT INTO `user_permissions` VALUES (19,22,0,'2016-02-20 01:49:19','2016-02-20 01:49:19'),(18,3,0,'2016-02-20 01:48:23','2016-02-20 01:48:23'),(17,2,0,'2016-02-20 01:47:37','2016-02-20 01:47:37'),(16,1,0,'2016-02-19 23:48:32','2016-02-19 23:48:32'),(20,23,1,'2016-02-29 16:40:24','2016-02-29 16:40:24'),(21,26,0,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(22,27,0,'2016-03-05 13:27:34','2016-03-05 13:27:34');
 /*!40000 ALTER TABLE `user_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -118,7 +119,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +128,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (3,'iain','iain','d','iain@gmail.com','$2y$10$LptN.IYG3NtMJvplvBKDXO7FH/WJhx8EbmB.Wk3fMZ3JSHkuDoBTK','2016-02-20 01:46:39','2016-02-20 01:46:39'),(1,'john','john','k','johnwkay95@gmail.com','$2y$10$LptN.IYG3NtMJvplvBKDXO7FH/WJhx8EbmB.Wk3fMZ3JSHkuDoBTK','2016-02-19 23:48:32','2016-02-19 23:48:44'),(2,'colin','colin','k','colin@gmail.com','$2y$10$LptN.IYG3NtMJvplvBKDXO7FH/WJhx8EbmB.Wk3fMZ3JSHkuDoBTK','2016-02-20 01:46:14','2016-02-20 01:46:14'),(23,'blogscot','Iain','Diamond','b@bb.com','$2y$10$Ga0CsQclPBsnfY.Cfba9.uBVvYTj6cuOJib9jUh4dqyHd2XSJRfga','2016-02-29 16:40:24','2016-02-29 16:40:24'),(26,'kev','Kevin','McDonald','k@k.com','$2y$10$AEpVQs99sT3rL3Qvogt66eXsSirIPm0FDomKYA.22zPplv/oKYo5e','2016-03-04 12:07:58','2016-03-04 12:07:58');
+INSERT INTO `users` VALUES (27,'sam','Sam','TheMan','sam@s.com','$2y$10$by3oHDLjmL7RjZtFVSHTe.pr585Oq9LkM9ffqBZkn0HXSD4gVFmT.','2016-03-05 13:27:34','2016-03-05 13:27:34'),(3,'iain','iain','d','iain@gmail.com','$2y$10$4EaCnkFK.9v3kyh0hcY1nuqX.uC1BktlVBMjhfg4jFizHogrQLYP2','2016-02-20 01:46:39','2016-03-06 12:30:05'),(1,'john','john','k','johnwkay95@gmail.com','$2y$10$yHuEjJITEVugoyQkjPaf0e7UwFuaOCKMRYXtmKpU6ewTOWUY793Ye','2016-02-19 23:48:32','2016-03-06 12:31:53'),(2,'colin','colin','k','colin@gmail.com','$2y$10$LptN.IYG3NtMJvplvBKDXO7FH/WJhx8EbmB.Wk3fMZ3JSHkuDoBTK','2016-02-20 01:46:14','2016-02-20 01:46:14'),(23,'blogscot','Iain','Diamond','b@bb.com','$2y$10$Ga0CsQclPBsnfY.Cfba9.uBVvYTj6cuOJib9jUh4dqyHd2XSJRfga','2016-02-29 16:40:24','2016-02-29 16:40:24'),(26,'kev','Kevin','McDonald','k@k.com','$2y$10$AEpVQs99sT3rL3Qvogt66eXsSirIPm0FDomKYA.22zPplv/oKYo5e','2016-03-04 12:07:58','2016-03-04 12:07:58');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +146,7 @@ CREATE TABLE `wallets` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +155,7 @@ CREATE TABLE `wallets` (
 
 LOCK TABLES `wallets` WRITE;
 /*!40000 ALTER TABLE `wallets` DISABLE KEYS */;
-INSERT INTO `wallets` VALUES (1,10,1,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(2,13.75,2,'2016-03-04 12:07:58','2016-03-05 12:23:13'),(3,6.25,3,'2016-03-04 12:07:58','2016-03-05 12:23:13'),(4,10,23,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(5,10,26,'2016-03-04 12:07:58','2016-03-04 12:07:58');
+INSERT INTO `wallets` VALUES (1,10,1,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(2,19.24,2,'2016-03-04 12:07:58','2016-03-09 12:08:10'),(3,21.71,3,'2016-03-04 12:07:58','2016-03-09 12:08:10'),(4,10,23,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(5,10,26,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(6,10,27,'2016-03-05 13:27:34','2016-03-05 13:54:18');
 /*!40000 ALTER TABLE `wallets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -167,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-05 11:26:14
+-- Dump completed on 2016-03-09 17:06:53
