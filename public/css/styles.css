@@ -54,6 +54,7 @@ table.movie_table {
 
 .default_form input[type="text"],
 .default_form input[type="number"],
+.default_form input[type="url"],
 .default_form input[type="password"] {
     width:220px;
     margin-top: 3px;
@@ -69,3 +70,7 @@ a.back-btn {
   color: #fff;
   text-decoration: none !important;
 }
+
+li > img {
+  width: 180px;
+  }

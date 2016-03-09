@@ -20,6 +20,17 @@
          {% if errors.has('price') %} {{ errors.first('price') }} {% endif %}
       </li>
       <li>
+         <label for="image_url">Image Url: </label>
+         <input type="url" name="image_url" id="image_url"
+         value="{{ advert.image_url }}">
+         <button id="preview-btn" class="btn btn-primary" type="button">Preview</button>
+         {% if errors.has('image_url') %} {{ errors.first('image_url') }} {% endif %}
+      </li>
+      <li>
+         <label for="image_url">Image:</label>
+         <img src="{{ advert.image_url }}" alt="Advert Image">
+      </li>
+      <li>
         <label for="title">Category: </label>
         <select class="default_category" name="category">
           <option value="Action" {% if advert.category == 'Action' %} selected {% endif %}>Action</option>
@@ -44,4 +55,6 @@
    </ul>
    <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
 </form>
+<script src="{{baseUrl() }}/js/preview.js"></script>
+
 {% endblock %}

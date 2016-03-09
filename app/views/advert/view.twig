@@ -18,6 +18,10 @@
          value="{{ advert.price|number_format(2,'.',',') }}" readonly>
       </li>
       <li>
+         <label for="image_url">Image:</label>
+         <img src="{{ advert.image_url }}" alt="Advert Image">
+      </li>
+      <li>
         <label for="title">Category: </label>
         <select class="default_category" name="category" readonly>
           <option selected>{{ advert.category }}</option>

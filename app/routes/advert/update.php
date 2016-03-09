@@ -14,6 +14,7 @@ $app->post('/update/:id', function($id) use ($app) {
 
     $title = $request->post('title');
     $price = $request->post('price');
+    $image_url = $request->post('image_url');
     $category = $request->post('category');
     $description = $request->post('description');
 
@@ -22,6 +23,7 @@ $app->post('/update/:id', function($id) use ($app) {
     $v->validate([
       'title' => [$title, 'required|min(3)|max(40)'],
       'price' => [$price, 'required|number|min(0)'],
+      'image_url' => [$image_url, 'required|url|max(256)'],
       'category' => [$category, 'required|max(20)'],
       'description' => [$description, 'max(512)']
     ]);
@@ -34,6 +36,7 @@ $app->post('/update/:id', function($id) use ($app) {
       $advert = $app->advert->where('id', $id)->first();
       $advert->title = $title;
       $advert->price = $price;
+      $advert->image_url = $image_url;
       $advert->category = $category;
       $advert->description = $description;
       $advert->ad_rate = $ad_rate;

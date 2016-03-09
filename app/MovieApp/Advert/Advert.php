@@ -10,6 +10,7 @@ class Advert extends Eloquent {
   protected $fillable = [
     'title',
     'price',
+    'image_url',
     'category',
     'description',
     'ad_rate',
