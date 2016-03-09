@@ -2,7 +2,7 @@
 
 $app->get('/viewbyuser', $authenticated(), function() use ($app) {
 
-  $adverts = $app->advert->find_by_seller($app->auth->id);
+  $adverts = $app->auth->adverts;
 
   $app->render('advert/viewbyuser.twig', [
     'adverts' => $adverts

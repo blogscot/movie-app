@@ -12,7 +12,7 @@ class Wallet extends Eloquent {
     'user_id'
   ];
 
-  public function get_user_balance($id) {
+  public function get_wallet($id) {
     return $this->where('user_id', $id)->first();
   }
 

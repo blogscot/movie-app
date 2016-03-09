@@ -1,7 +1,7 @@
 <?php
 
 $app->get('/userwallet', $authenticated(), function() use ($app) {
-  $wallet = $app->wallet->get_user_balance($app->auth->id);
+  $wallet = $app->wallet->get_wallet($app->auth->id);
 
   $app->render('userprofile/wallet.twig', [
     'wallet' => $wallet
@@ -19,7 +19,7 @@ $app->post('/userwallet', $authenticated(), function() use ($app) {
   ]);
 
   if ($v->passes()) {
-    $wallet = $app->wallet->get_user_balance($app->auth->id);
+    $wallet = $app->wallet->get_wallet($app->auth->id);
     $wallet->balance += $funds;
     $wallet->save();
 

@@ -12,8 +12,8 @@ $app->post('/viewadvert/:id', function($id) use ($app) {
   $advert = $app->advert->find_by_id($id);
   $buyer = $app->auth->id;
   $seller = $advert->seller_id;
-  $wallet_buyer = $app->wallet->get_user_balance($buyer);
-  $wallet_seller = $app->wallet->get_user_balance($seller);
+  $wallet_buyer = $app->auth->wallet;
+  $wallet_seller = $app->wallet->get_wallet($seller);
   $transaction = $app->transaction;
 
   // the user wants to buy the selected movie
