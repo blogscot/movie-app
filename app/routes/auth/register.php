@@ -22,7 +22,7 @@ $app->post('/register', $guest(), function() use ($app){
    $v->validate([
       'firstname' => [$firstname, 'required|alpha|max(35)'],
       'surname' => [$surname, 'required|alpha|max(35)'],
-      'username' => [$username, 'required|alnum|max(20)|uniqueUsername'],
+      'username' => [$username, 'required|alnumDash|max(20)|uniqueUsername'],
       'email' => [$email, 'required|email|max(50)|uniqueEmail'],
       'password1' => [$password1, 'required|min(8)|max(35)|matches(password2)'],
       'password2' => [$password2, 'required']
