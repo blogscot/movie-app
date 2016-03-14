@@ -16,7 +16,7 @@ $app->post('/login', $guest(), function() use ($app){
    $v = $app->validation;
 
    $v->validate([
-      'identifier' => [$identifier, 'required|max(20)'],
+      'identifier' => [$identifier, 'required|alnumDash|max(20)'],
       'password' => [$password, 'required|max(35)']
    ]);
 

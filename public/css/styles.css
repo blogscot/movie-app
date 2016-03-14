@@ -74,3 +74,10 @@ a.back-btn {
 li > img {
   width: 180px;
   }
+
+.user-warning {
+  position: relative;
+  left: 150px;
+  font-weight: bold;
+  color: red;
+}

@@ -11,20 +11,26 @@
             <label for="title">Title: </label>
             <input type="text" name="title" id="title"
             {% if request.post('title') %} value="{{ request.post('title') }}" {% endif %}>
-            {% if errors.has('title') %} {{ errors.first('title') }} {% endif %}
+            <div class="user-warning">
+              {% if errors.has('title') %} {{ errors.first('title') }} {% endif %}
+            </div>
          </li>
          </li>
          <li>
             <label for="price">Price: </label>
             <input type="number" step="0.01" name="price" id="price"
             {% if request.post('price') %} value="{{ request.post('price') }}" {% endif %}>
-            {% if errors.has('price') %} {{ errors.first('price') }} {% endif %}
+            <div class="user-warning">
+              {% if errors.has('price') %} {{ errors.first('price') }} {% endif %}
+            </div>
          </li>
          <li>
             <label for="image_url">Image Url: </label>
             <input type="url" name="image_url" id="image_url">
             <button id="preview-btn" class="btn btn-primary" type="button">Preview</button>
-            {% if errors.has('image_url') %} {{ errors.first('image_url') }} {% endif %}
+            <div class="user-warning">
+              {% if errors.has('image_url') %} {{ errors.first('image_url') }} {% endif %}
+            </div>
          </li>
          <li>
             <label for="image_url">Image:</label>

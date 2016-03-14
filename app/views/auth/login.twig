@@ -9,12 +9,16 @@
          <li>
             <label for="identifier">Username/Email: </label>
             <input type="text" name="identifier" id="identifier">
-            {% if errors.has('identifier') %} {{ errors.first('identifier') }} {% endif %}
+            <div class="user-warning">
+              {% if errors.has('identifier') %} {{ errors.first('identifier') }} {% endif %}
+            </div>
          </li>
          <li>
             <label for="password">Password: </label>
             <input type="password" name="password" id="password">
-            {% if errors.has('password') %} {{ errors.first('password') }} {% endif %}
+            <div class="user-warning">
+              {% if errors.has('password') %} {{ errors.first('password') }} {% endif %}
+            </div>
          </li>
          <li>
            <button class="btn btn-primary" type="submit">Login</button>
