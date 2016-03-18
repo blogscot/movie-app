@@ -13,27 +13,26 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="{{ urlFor('home') }}">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-            aria-haspopup="true" aria-expanded="false">Adverts <span class="caret"></span></a>
+            aria-haspopup="true" aria-expanded="false">Movies <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ urlFor('advert.viewall') }}">View Adverts</a></li>
+            <li><a href="{{ urlFor('advert.viewall') }}">Buy Movies</a></li>
             {% if auth %}
-              <li><a href="{{ urlFor('advert.add') }}">Create New Advert</a></li>
+              <li><a href="{{ urlFor('advert.add') }}">Sell Movies</a></li>
             {% endif %}
           </ul>
         </li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">About</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if auth %}
           {% if auth.isAdmin %}
           <li><a href="#">Admin</a></li>
           {% endif %}
-          <li><a href="{{ urlFor('user.profile') }}">{{ auth.username|capitalize}}'s Profile</a></li>
-          <li><a href="{{ urlFor('auth.logout') }}">Logout</a></li>
+          <li><a href="{{ urlFor('user.profile') }}">Profile</a></li>
+          <li><a href="{{ urlFor('auth.logout') }}">Logout {{ auth.username|capitalize}}</a></li>
         {% else %}
           <li><a href="{{ urlFor('auth.login') }}">Login</a></li>
           <li><a href="{{ urlFor('auth.register') }}">Register</a></li>

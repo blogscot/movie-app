@@ -1,8 +1,38 @@
 {% extends 'templates/default.twig' %}
 
+{% block style%}
+img {
+  width: 180px;
+  max-height: 250px;
+  margin: 10px 10px 10px 0;
+}
+.advert {
+  margin-left: 25px;
+}
+{% endblock %}
+
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  {{ auth }}
-   Home
+
+<h1>Buy and Sell Movies</h1>
+
+<hr>
+
+<div class="row">
+  {% for advert in adverts if not advert.isSold %}
+      <div class="col-sm-2 advert">
+        <img src="{{advert.image_url}}" alt="" />
+        <div>
+          <label>Movie Title:</label>
+          <span>{{ advert.title }}</span>
+        </div>
+        <div>
+          <label>Price:</label>
+          <span>&pound;{{ advert.price|number_format(2,'.',',') }}</span>
+        </div>
+      </div>
+  {% endfor %}
+</div>
+
 {% endblock %}

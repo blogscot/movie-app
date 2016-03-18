@@ -1,6 +1,27 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}View Adverts{% endblock %}
+{% block style%}
+img {
+  width: 180px;
+  max-height: 250px;
+  margin: 10px 10px 10px 0;
+}
+span,
+label
+{ font-size: 1.3em; }
+.movie-details {
+  position: relative;
+  top: 60px;
+}
+input {
+  height: 32px;
+  width: 400px;
+  border-radius: 4px;
+}
+form > label { width: 90px; }
+{% endblock %}
+
+{% block title %}Buy Movies{% endblock %}
 
 {% block content %}
 
@@ -8,41 +29,48 @@
     <p>Please login to see more details</p>
   {% endif %}
 
-  <form class="default_form" action="{{ urlFor('advert.viewall.post')}}" method="post">
+  <form action="{{ urlFor('advert.viewall.post')}}" method="post">
     <label for="search_term">Search:</label>
-    <input type="text" name="search_term" id="search_term">
-    <button class="btn btn-primary" type="submit">Go</button>
+    <input type="text" name="search_term" id="search_term" placeholder="Search by Title, Category or Seller">
+    <button class="btn btn-primary btn-sm" type="submit">Go</button>
     <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
   </form>
 
-  <table class="movie_table">
-    <thead>
-      <tr>
+  <hr>
+
+  {% for advert in adverts if not advert.isSold %}
+  <div class="row">
+      <div class="col-sm-2">
+        <img src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
+      </div>
+      <div class="col-sm-4 movie-details">
+        <div>
+          <label>Movie Title:</label>
+          <span>{{ advert.title }}</span>
+        </div>
+        <div>
+          <label>Category:</label>
+          <span>{{ advert.category }}</span>
+        </div>
         {% if auth %}
-        <th><strong>Seller</strong></th>
+        <div>
+          <label>Seller:</label>
+          <span>{{ auth.getUsernameById(advert.seller_id)|capitalize }}</span>
+        </div>
         {% endif %}
-        <th><strong>Category</strong></th>
-        <th><strong>Movie Title</strong></th>
-        <th><strong>Price</strong></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    {% for advert in adverts if not advert.isSold %}
-      <tbody>
-        <tr>
-          {% if auth %}
-            <td>{{ auth.getUsernameById(advert.seller_id) }}</td>
-          {% endif %}
-          <td>{{ advert.category }}</td>
-          <td>{{ advert.title }}</td>
-          <td>&pound;{{ advert.price|number_format(2,'.',',') }}</td>
-          {% if auth %}
-            <td><a href="{{ urlFor('advert.view', {id: advert.id}) }}">View Details</a></td>
-          {% endif %}
-        </tr>
-      </tbody>
-    {% endfor %}
-  </table>
+        <div>
+          <label>Price:</label>
+          <span>&pound;{{ advert.price|number_format(2,'.',',') }}</span>
+        </div>
+        {% if auth %}
+        <div>
+          <span>
+            <a href="{{ urlFor('advert.view', {id: advert.id}) }}">View Details</a></td>
+          </span>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
 
 {% endblock %}
