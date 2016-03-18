@@ -8,27 +8,56 @@ $app->get('/userwallet', $authenticated(), function() use ($app) {
   ]);
 })->name('user.wallet');
 
-$app->post('/userwallet', $authenticated(), function() use ($app) {
-  $request = $app->request;
+$app->post('/walletdeposit', $authenticated(), function() use ($app) {
   $v = $app->validation;
+  $wallet = $app->wallet->get_wallet($app->auth->id);
 
-  $funds = $request->post('funds');
+  $funds = $app->request->post('funds');
 
   $v->validate([
     'funds' => [$funds, 'required|number|min(0)'],
   ]);
 
   if ($v->passes()) {
-    $wallet = $app->wallet->get_wallet($app->auth->id);
     $wallet->balance += $funds;
     $wallet->save();
 
-    $app->flash('global', 'New funds added!');
+    $app->flash('global', 'Desposit successful');
     $app->response->redirect($app->urlFor('user.wallet'));
   }
 
-  $app->render('advert/add.twig', [
+  $app->render('userprofile/wallet.twig', [
      'errors' => $v->errors(),
-     'request' => $request
+     'wallet' => $wallet
   ]);
-})->name('user.wallet.post');
+})->name('user.deposit.post');
+
+$app->post('/walletwithdraw', $authenticated(), function() use ($app) {
+  $v = $app->validation;
+  $wallet = $app->wallet->get_wallet($app->auth->id);
+
+  $funds = $app->request->post('funds');
+
+  $v->validate([
+    'funds' => [$funds, 'required|number|min(0)'],
+  ]);
+
+  if ($v->passes()) {
+
+    if ($funds <= $wallet->balance) {
+      $wallet->balance -= $funds;
+      $wallet->save();
+
+      $app->flash('global', 'Withdrawal successful.');
+      return $app->response->redirect($app->urlFor('user.wallet'));
+    } else {
+      $app->flash('global', 'Sorry, you do not have sufficient funds.');
+      return $app->response->redirect($app->urlFor('user.wallet'));
+    }
+  }
+
+  $app->render('userprofile/wallet.twig', [
+     'errors' => $v->errors(),
+     'wallet' => $wallet
+  ]);
+})->name('user.withdraw.post');
