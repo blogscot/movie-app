@@ -2,12 +2,25 @@
 
 {% block title %}User Wallet{% endblock %}
 
+{% block styles %}
+  <style> label { font-size: 1.2em; } </style>
+{% endblock %}
+
 {% block content %}
 
-  <h2>User Profile</h2>
-  <div> <a href="{{ urlFor('user.wallet') }}">View My Wallet</a> </div>
-  <div> <a href="{{ urlFor('advert.viewbyuser') }}">View My Adverts</a> </div>
-  <div> <a href="{{ urlFor('advert.purchases') }}">View My Purchases</a> </div>
-  <div> <a href="{{ urlFor('auth.password')}}">Change Password</a> </div>
+  <h2>{{ auth.username|capitalize }}'s Profile</h2>
+  <div class="row">
+    <div class="well col-sm-5">
+    <label>Admin</label>
+    <div> <a href="{{ urlFor('auth.password')}}">Update User Details</a> </div>
+    <div> <a href="#">Delete User Account</a> </div>
+    </div>
+    <div class="well col-sm-5">
+    <label>Account</label>
+    <div> <a href="{{ urlFor('user.wallet') }}">View My Wallet</a> </div>
+    <div> <a href="{{ urlFor('advert.viewbyuser') }}">View My Adverts</a> </div>
+    <div> <a href="{{ urlFor('advert.purchases') }}">View My Purchases</a> </div>
+    </div>
+  </div>
 
 {% endblock %}
