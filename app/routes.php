@@ -13,7 +13,6 @@ require INC_ROOT . '/app/routes/userprofile/wallet.php';
 require INC_ROOT . '/app/routes/advert/add.php';
 require INC_ROOT . '/app/routes/advert/purchase.php';
 require INC_ROOT . '/app/routes/advert/remove.php';
-require INC_ROOT . '/app/routes/advert/uploadimage.php';
 require INC_ROOT . '/app/routes/advert/update.php';
 require INC_ROOT . '/app/routes/advert/view.php';
 require INC_ROOT . '/app/routes/advert/viewall.php';
