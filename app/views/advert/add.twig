@@ -3,77 +3,68 @@
 {% block title %}Create New Advert{% endblock %}
 
 {% block content %}
-
-  <form class="default_form" action="{{ urlFor('advert.upload.post')}}" method="post" enctype="multipart/form-data">
-    <ul class="center-block">
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-9">
       <h2>Create New Advert</h2>
-      <li>
-        <label for="fileToUpload">Image: </label>
+    </div>
+  </div>
+  <form class="form-horizontal" action="{{ urlFor('advert.add.post') }}" method="post" autocomplete="off">
+    <div class="form-group">
+      <label class="control-label col-sm-offset-3 col-sm-1"for="title">Title: </label>
+      <div class="col-sm-6">
+        <input class="form-control" type="text" name="title" id="title"
+        {% if request.post('title') %} value="{{ request.post('title') }}" {% endif %}>
+        <div class="user-warning col-sm-6">
+          {% if errors.has('title') %} {{ errors.first('title') }} {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-offset-3 col-sm-1" for="price">Price: </label>
+      <div class="col-sm-6">
+        <input class="form-control" type="number" step="0.01" name="price" id="price"
+        {% if request.post('price') %} value="{{ request.post('price') }}" {% endif %}>
+        <div class="user-warning col-sm-6">
+          {% if errors.has('price') %} {{ errors.first('price') }} {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-offset-3 col-sm-1" for="fileToUpload">Image: </label>
+      <div class="col-sm-6">
         <input type="file" name="fileToUpload" id="fileToUpload">
-        <button class="btn btn-primary" type="submit"
-        name="submit">Upload Image</button>
-      </li>
-    </ul>
-     <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+      </div>
+   </div>
+    <div class="form-group">
+      <label class="control-label col-sm-offset-3 col-sm-1" for="title">Category: </label>
+      <div class="col-sm-6">
+        <select class="default_category" name="category">
+          <option value="Action">Action</option>
+          <option value="Comedy">Comedy</option>
+          <option value="Crime">Crime</option>
+          <option value="Documentary">Documentary</option>
+          <option value="Drama">Drama</option>
+          <option value="Family">Family</option>
+          <option value="Horror">Horror</option>
+          <option value="Romance">Romance</option>
+          <option value="Scifi">SciFi</option>
+          <option value="Thriller">Thriller</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-offset-3 col-sm-1" for="title">Description: </label>
+      <div class="col-sm-6">
+        <textarea class="form-control" name="description" rows="8"></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-1">
+        <button class="btn btn-primary" type="submit">Create</button>
+      </div>
+    </div>
+    <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
   </form>
-
-
-   <form class="default_form" action="{{ urlFor('advert.add.post') }}" method="post" autocomplete="off">
-      <ul class="center-block">
-         <li>
-            <label for="title">Title: </label>
-            <input type="text" name="title" id="title"
-            {% if request.post('title') %} value="{{ request.post('title') }}" {% endif %}>
-            <div class="user-warning">
-              {% if errors.has('title') %} {{ errors.first('title') }} {% endif %}
-            </div>
-         </li>
-         </li>
-         <li>
-            <label for="price">Price: </label>
-            <input type="number" step="0.01" name="price" id="price"
-            {% if request.post('price') %} value="{{ request.post('price') }}" {% endif %}>
-            <div class="user-warning">
-              {% if errors.has('price') %} {{ errors.first('price') }} {% endif %}
-            </div>
-         </li>
-         <li>
-            <label for="image_url">Image Url: </label>
-            <input type="url" name="image_url" id="image_url">
-            <button id="preview-btn" class="btn btn-primary" type="button">Preview</button>
-            <div class="user-warning">
-              {% if errors.has('image_url') %} {{ errors.first('image_url') }} {% endif %}
-            </div>
-         </li>
-         <li>
-            <label for="image_url">Image:</label>
-            <img src="" alt="Image Preview" >
-         </li>
-         <li>
-           <label for="title">Category: </label>
-           <select class="default_category" name="category">
-             <option value="Action">Action</option>
-             <option value="Comedy">Comedy</option>
-             <option value="Crime">Crime</option>
-             <option value="Documentary">Documentary</option>
-             <option value="Drama">Drama</option>
-             <option value="Family">Family</option>
-             <option value="Horror">Horror</option>
-             <option value="Romance">Romance</option>
-             <option value="Scifi">SciFi</option>
-             <option value="Thriller">Thriller</option>
-           </select>
-         </li>
-         <li>
-           <label for="title">Description: </label>
-           <textarea name="description" rows="8" cols="40"></textarea>
-         </li>
-         <li>
-           <button class="btn btn-primary" type="submit">Create</button>
-         </li>
-      </ul>
-      <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
-   </form>
-   <script src="{{baseUrl() }}/js/preview.js"></script>
+  <script src="{{baseUrl() }}/js/preview.js"></script>
 
 {% endblock %}

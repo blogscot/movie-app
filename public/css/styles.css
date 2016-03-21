@@ -19,55 +19,16 @@ body {
   margin-bottom: 0;
 }
 
-.center-block {
-  width: 300px;
-  padding: 10px;
-}
-
-.default_form h2 {
-  margin-bottom: 15px;
-}
-
-.default_form ul {
-  width: 50%;
-  list-style-type: none;
-  list-style-position: outside;
+input[type="file"] {
+  font-size: 1.4em;
 }
 
 select.default_category {
-  border: 1px solid darkgrey;
-  font-size: 16px;
+  font-size: 1.2em;
 }
 
 table.movie_table {
   width: 500px;
-}
-
-.default_form li {
-  padding: 4px;
-  position: relative;
-}
-
-.default_form label {
-    width:150px;
-    margin-top: 3px;
-    display:inline-block;
-    float:left;
-    padding:3px;
-}
-
-.default_form input[type="text"],
-.default_form input[type="number"],
-.default_form input[type="url"],
-.default_form input[type="password"] {
-    width:220px;
-    margin-top: 3px;
-    padding:5px 8px;
-}
-
-.default_form button {
-  margin-top: 3px;
-  margin-bottom: 5px;
 }
 
 a.back-btn {
@@ -80,8 +41,6 @@ li > img {
   }
 
 .user-warning {
-  position: relative;
-  left: 150px;
   font-weight: bold;
   color: red;
 }
