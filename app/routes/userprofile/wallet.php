@@ -23,7 +23,7 @@ $app->post('/walletdeposit', $authenticated(), function() use ($app) {
     $wallet->save();
 
     $app->flash('global', 'Desposit successful');
-    $app->response->redirect($app->urlFor('user.wallet'));
+    return $app->response->redirect($app->urlFor('user.wallet'));
   }
 
   $app->render('userprofile/wallet.twig', [
