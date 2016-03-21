@@ -4,42 +4,53 @@
 
 {% block content %}
 
-<form class="default_form" action="{{ urlFor('advert.view.post', {id: advert.id}) }}" method="post" autocomplete="off">
-   <ul class="center-block">
-     <h2>Movie Details</h2>
-      <li>
-         <label>Title: </label>
-         <input type="text" value='{{ advert.title }}' readonly>
-      </li>
-      </li>
-      <li>
-         <label>Seller: </label>
-         <input type="text" value="{{ auth.getUsernameById(advert.seller_id)|capitalize }}" readonly></input>
-      </li>
-      <li>
-         <label>Price: </label>
-         <input type="number" value="{{ advert.price|number_format(2,'.',',') }}" readonly>
-      </li>
-      <li>
-         <label>Movie:</label>
+  <h2>Movie Details</h2>
+  <form class="form-horizontal" action="{{ urlFor('advert.view.post', {id: advert.id}) }}" method="post" autocomplete="off">
+    <div class="form-group">
+       <label class="control-label col-sm-offset-3 col-sm-1">Title: </label>
+       <div class="col-sm-5">
+         <input class="form-control" type="text" value='{{ advert.title }}' readonly>
+       </div>
+    </div>
+    <div class="form-group">
+       <label class="control-label col-sm-offset-3 col-sm-1">Seller: </label>
+       <div class="col-sm-5">
+         <input class="form-control" type="text" value="{{ auth.getUsernameById(advert.seller_id)|capitalize }}" readonly></input>
+       </div>
+    </div>
+    <div class="form-group">
+       <label class="control-label col-sm-offset-3 col-sm-1">Price: </label>
+       <div class="col-sm-5">
+         <input class="form-control" type="number" value="{{ advert.price|number_format(2,'.',',') }}" readonly>
+       </div>
+    </div>
+    <div class="form-group">
+       <label class="control-label col-sm-offset-3 col-sm-1">Movie:</label>
+       <div class="col-sm-5">
          <img src="{{ advert.image_url }}" alt="Advert Image">
-      </li>
-      <li>
-        <label>Category: </label>
-        <select class="default_category" readonly>
+       </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-offset-3 col-sm-1">Category: </label>
+      <div class="col-sm-5">
+        <select class="form-control" class="default_category" readonly>
           <option selected>{{ advert.category }}</option>
         </select>
-      </li>
-      <li>
-        <label>Description: </label>
-        <textarea readonly rows="8" cols="40">{{ advert.description }}</textarea>
-      </li>
-      <li>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-offset-3 col-sm-1">Description: </label>
+      <div class="col-sm-5">
+        <textarea class="form-control" readonly rows="8" cols="40">{{ advert.description }}</textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-4 col-sm-2">
         <button class="btn btn-primary" type="submit">Buy</button>
         <a class="back-btn" href="{{ urlFor('advert.viewall')}}"><button
           class="btn btn-primary" type="button">Back</button></a>
-      </li>
-   </ul>
+      </div>
+    </div>
    <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
 </form>
 
