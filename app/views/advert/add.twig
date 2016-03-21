@@ -11,7 +11,7 @@
   <form class="form-horizontal" action="{{ urlFor('advert.add.post') }}" method="post"
     enctype="multipart/form-data" autocomplete="off">
     <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1"for="title">Title: </label>
+      <label class="control-label col-sm-offset-3 col-sm-1" for="title">Title: </label>
       <div class="col-sm-6">
         <input class="form-control" type="text" name="title" id="title"
         {% if request.post('title') %} value="{{ request.post('title') }}" {% endif %}>
