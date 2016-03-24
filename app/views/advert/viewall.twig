@@ -1,24 +1,9 @@
 {% extends 'templates/default.twig' %}
 
 {% block style%}
-img {
-  width: 180px;
-  height: 250px;
-  margin: 10px 10px 10px 0;
+.movie-item {
+  min-height: 450px;
 }
-span,
-label
-{ font-size: 1.3em; }
-.movie-details {
-  position: relative;
-  top: 60px;
-}
-input {
-  height: 32px;
-  width: 400px;
-  border-radius: 4px;
-}
-form > label { width: 90px; }
 {% endblock %}
 
 {% block title %}Buy Movies{% endblock %}
@@ -29,21 +14,28 @@ form > label { width: 90px; }
     <p>Please login to see more details</p>
   {% endif %}
 
-  <form action="{{ urlFor('advert.viewall.post')}}" method="post">
-    <label for="search_term">Search:</label>
-    <input type="text" name="search_term" id="search_term" placeholder="Search by Title, Category or Seller">
-    <button class="btn btn-primary btn-sm" type="submit">Go</button>
+  <form class="form-horizontal" action="{{ urlFor('advert.viewall.post')}}" method="post">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-offset-1 col-xs-2 col-sm-1">
+          <label class="control-label" for="search_term">Search:</label>
+        </div>
+        <div class="col-xs-7 col-sm-5">
+          <input class="form-control" type="text" name="search_term" placeholder="Search by Title, Category or Seller">
+        </div>
+        <button class="btn btn-primary" type="submit">Go</button>
+      </div>
+      </div>
     <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
   </form>
 
   <hr>
 
-  {% for advert in adverts if not advert.isSold %}
   <div class="row">
-      <div class="col-sm-2">
-        <img src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
-      </div>
-      <div class="col-sm-4 movie-details">
+    {% for advert in adverts if not advert.isSold %}
+
+      <div class="col-xs-offset-1 col-xs-10 col-sm-3 movie-item">
+        <img class="img-thumbnail" src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
         <div>
           <label>Movie Title:</label>
           <span>{{ advert.title }}</span>
@@ -65,12 +57,13 @@ form > label { width: 90px; }
         {% if auth %}
         <div>
           <span>
-            <a href="{{ urlFor('advert.view', {id: advert.id}) }}">View Details</a></td>
+            <a href="{{ urlFor('advert.view', {id: advert.id}) }}">
+              <button class="btn btn-info btn-sm" type="button" name="button">View</button> </a></td>
           </span>
         </div>
         {% endif %}
       </div>
+      {% endfor %}
     </div>
-  {% endfor %}
 
 {% endblock %}

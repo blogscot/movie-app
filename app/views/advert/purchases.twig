@@ -6,7 +6,7 @@
   <h2> My Purchases</h2>
 
   {% if purchases is empty %}
-    <p>You have no purchases. So sad!</p>
+    <p class="well text-danger text-center">You have no purchases. So sad!</p>
   {% endif %}
 
   {% for purchase in purchases %}
@@ -24,4 +24,6 @@
     </div>
     <br/>
   {% endfor %}
+
+  <a href="{{urlFor('user.profile')}}"> <button class="btn btn-primary" type="button" name="button">Back</button> </a>
 {% endblock %}

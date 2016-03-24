@@ -1,16 +1,5 @@
 {% extends 'templates/default.twig' %}
 
-{% block style %}
-img {
-  width: 180px;
-  max-height: 250px;
-  margin: 10px 10px 10px 0;
-}
-.advert {
-  margin-left: 25px;
-}
-{% endblock %}
-
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -22,7 +11,7 @@ img {
 <div class="row">
   {% for advert in adverts if not advert.isSold %}
       <div class="col-sm-2 advert">
-        <img src="{{advert.image_url}}" alt="" />
+        <img class="img-thumbnail" src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
         <div>
           <label>Movie Title:</label>
           <span>{{ advert.title }}</span>

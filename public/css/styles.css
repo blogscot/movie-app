@@ -1,6 +1,6 @@
 html,
 body {
-  background-color: #ddffff;
+  background-color: #e9eaed;
   margin-top: 40px;
   height: 100%;
 }
@@ -25,10 +25,6 @@ input[type="file"] {
 
 select.default_category {
   font-size: 1.2em;
-}
-
-table.movie_table {
-  width: 500px;
 }
 
 a.back-btn {

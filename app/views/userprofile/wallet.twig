@@ -8,25 +8,32 @@
     Your current balance is: &pound;{{ wallet.balance }}
   </p>
   <hr/>
-  <form class="default_form" action="{{ urlFor('user.deposit.post')}}" method="post" autocomplete="off">
-  <ul>
-    <li>
-      <label for="funds">Deposit Funds: </label>
-      <input type="number" step="0.01" name="funds" id="funds">
-      <button class="btn btn-primary" type="submit">+</button>
-    </li>
-    <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
-  </ul>
+  <form action="{{ urlFor('user.deposit.post')}}" method="post" autocomplete="off">
+  <div class="form-group">
+    <div class="row">
+      <label class="control-label col-sm-offset-1 col-sm-2" for="funds">Deposit Funds: </label>
+      <div class="col-sm-5">
+        <input class="form-control" type="number" step="0.01" name="funds" id="funds">
+      </div>
+      <button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i></button>
+      <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+    </div>
+  </div>
   </form>
 
   <form class="default_form" action="{{ urlFor('user.withdraw.post')}}" method="post" autocomplete="off">
-  <ul>
-    <li>
-      <label for="funds">Withdraw Funds: </label>
-      <input type="number" step="0.01" name="funds" id="funds">
-      <button class="btn btn-primary" type="submit">-</button>
-    </li>
+  <div class="form-group">
+    <div class="row">
+      <label class="control-label col-sm-offset-1 col-sm-2" for="funds">Withdraw Funds: </label>
+      <div class="col-sm-5">
+        <input class="form-control" type="number" step="0.01" name="funds" id="funds">
+      </div>
+      <button class="btn btn-primary" type="submit"><i class="fa fa-minus"></i></button>
+    </div>
     <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
-  </ul>
+  </div>
   </form>
+
+  <a href="{{urlFor('user.profile')}}"> <button class="btn btn-primary" type="button" name="button">Back</button> </a>
+
 {% endblock %}

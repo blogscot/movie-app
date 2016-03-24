@@ -4,11 +4,12 @@
 
 {% block content %}
   <h2>My Adverts</h2>
+  <hr>
 
   {% if adverts is empty %}
-    <p>You currently have no adverts.</p>
+    <p class="well text-danger text-center">You currently have no adverts.</p>
   {% else %}
-    <table class="movie_table">
+    <table class="table table-bordered table-condensed table-hover">
       <thead>
       <tr>
         <th><strong>Category</strong></th>
@@ -32,5 +33,6 @@
     </table>
   {% endif %}
 
+  <a href="{{urlFor('user.profile')}}"> <button class="btn btn-primary" type="button" name="button">Back</button> </a>
 
 {% endblock %}
