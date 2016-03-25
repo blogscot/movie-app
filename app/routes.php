@@ -11,7 +11,7 @@ require INC_ROOT . '/app/routes/userprofile/profile.php';
 require INC_ROOT . '/app/routes/userprofile/wallet.php';
 
 require INC_ROOT . '/app/routes/advert/add.php';
-require INC_ROOT . '/app/routes/advert/purchase.php';
+require INC_ROOT . '/app/routes/advert/transactions.php';
 require INC_ROOT . '/app/routes/advert/remove.php';
 require INC_ROOT . '/app/routes/advert/update.php';
 require INC_ROOT . '/app/routes/advert/view.php';

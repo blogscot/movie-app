@@ -5,11 +5,10 @@
 {% block content %}
   <h2>My Transactions</h2>
 
-  {% if purchases is empty %}
-    <p class="well text-danger text-center">You have no purchases. So sad!</p>
+  {% if transactions is empty %}
+    <p class="well text-danger text-center">You have no transactions. So sad!</p>
   {% endif %}
 
-  {% for purchase in purchases %}
 
   <table class="table table-bordered table-hover table-striped">
     <thead>
@@ -21,16 +20,17 @@
       </tr>
     </thead>
     <tbody>
+      {% for transaction in transactions %}
       <tr>
-        <td> {{ purchase.updated_at|date("d/m/Y") }} </td>
-        <td> {{ auth.getUsernameById(purchase.seller_id) }} </td>
-        <td> {{ purchase.title }}</td>
-        <td> &pound{{ purchase.price|number_format(2,'.',',') }} </td>
+        <td> {{ transaction.updated_at|date("d/m/Y") }} </td>
+        <td> {{ auth.getUsernameById(transaction.seller_id) }} </td>
+        <td> {{ transaction.title }}</td>
+        <td> &pound{{ transaction.price|number_format(2,'.',',') }} </td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 
-  {% endfor %}
 
   <a href="{{urlFor('user.profile')}}"> <button class="btn btn-primary" type="button" name="button">Back</button> </a>
 {% endblock %}
