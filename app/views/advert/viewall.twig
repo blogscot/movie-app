@@ -2,7 +2,11 @@
 
 {% block style%}
 .movie-item {
-  min-height: 450px;
+  min-height: 420px;
+}
+{# override the main button style #}
+form button[type="submit"] {
+  margin-top: auto;
 }
 {% endblock %}
 
@@ -14,18 +18,14 @@
     <p>Please login to see more details</p>
   {% endif %}
 
-  <form class="form-horizontal" action="{{ urlFor('advert.viewall.post')}}" method="post">
+  <form class="form-horizontal" role="form" action="{{ urlFor('advert.viewall.post')}}" method="post">
     <div class="form-group">
-      <div class="row">
-        <div class="col-xs-offset-1 col-xs-2 col-sm-1">
-          <label class="control-label" for="search_term">Search:</label>
-        </div>
-        <div class="col-xs-7 col-sm-5">
-          <input class="form-control" type="text" name="search_term" placeholder="Search by Title, Category or Seller">
-        </div>
-        <button class="btn btn-primary" type="submit">Go</button>
+      <label class="control-label col-xs-offset-1 col-xs-2 col-sm-1" for="search_term">Search:</label>
+      <div class="col-xs-7 col-sm-5">
+        <input class="form-control" type="text" name="search_term" placeholder="Search by Title, Category or Seller">
       </div>
-      </div>
+      <button class="btn btn-primary" type="submit">Go</button>
+    </div>
     <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
   </form>
 
