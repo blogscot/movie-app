@@ -1,6 +1,6 @@
 <?php
 
-$app->get('/update/:id', function($id) use ($app) {
+$app->get('/update/:id', $authenticated(), function($id) use ($app) {
   $advert = $app->advert->find_by_id($id);
 
   $app->render('advert/update.twig', [
@@ -8,7 +8,7 @@ $app->get('/update/:id', function($id) use ($app) {
   ]);
 })->name('advert.update');
 
-$app->post('/update/:id', function($id) use ($app) {
+$app->post('/update/:id', $authenticated(), function($id) use ($app) {
 
     $request = $app->request;
 

@@ -23,6 +23,15 @@ h2 {
   margin-bottom: 0;
 }
 
+img.img-thumbnail {
+  max-width: 184px;
+  border: 1px solid gold;
+}
+
+img.img-thumbnail:hover {
+  border: 1px solid red;
+}
+
 input[type="file"] {
   font-size: 1.4em;
 }

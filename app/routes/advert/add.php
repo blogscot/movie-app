@@ -6,7 +6,7 @@ $app->get('/addadvert', $authenticated(), function() use ($app) {
   $app->render('advert/add.twig');
 })->name('advert.add');
 
-$app->post('/addadvert', function() use ($app) {
+$app->post('/addadvert', $authenticated(), function() use ($app) {
 
   $request = $app->request;
   $v = $app->validation;

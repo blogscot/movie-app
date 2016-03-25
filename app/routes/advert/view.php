@@ -1,6 +1,6 @@
 <?php
 
-$app->get('/viewadvert/:id', function($id) use ($app) {
+$app->get('/viewadvert/:id', $authenticated(), function($id) use ($app) {
   $advert = $app->advert->find_by_id($id);
 
   $app->render('advert/view.twig',[
@@ -8,7 +8,7 @@ $app->get('/viewadvert/:id', function($id) use ($app) {
   ]);
 })->name('advert.view');
 
-$app->post('/viewadvert/:id', function($id) use ($app) {
+$app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
   $advert = $app->advert->find_by_id($id);
   $buyer = $app->auth->id;
   $seller = $advert->seller_id;
