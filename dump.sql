@@ -35,7 +35,7 @@ CREATE TABLE `adverts` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `adverts` (
 
 LOCK TABLES `adverts` WRITE;
 /*!40000 ALTER TABLE `adverts` DISABLE KEYS */;
-INSERT INTO `adverts` VALUES (36,'Star Wars',2.99,'https://cdn1.vox-cdn.com/thumbor/c4MtCAj5kZRnJUcZSd8YvgfIXyE=/cdn0.vox-cdn.com/uploads/chorus_asset/file/4238767/tfa-poster-japan.0.jpg','Scifi','Great!',10.0833333333,0,3,'2016-03-09 16:52:05','2016-03-09 17:52:05'),(37,'Batman Superman',4.55,'https://cdn3.vox-cdn.com/thumbor/EYJO7OYrdPjrgg2STZ8N7xr0YC0=/cdn0.vox-cdn.com/uploads/chorus_asset/file/4176900/starwarsposter-1.0.jpg','Action','Batman rules!',10.1666666667,0,1,'2016-03-09 17:42:52','2016-03-09 17:42:52');
+INSERT INTO `adverts` VALUES (43,'Thor',6.95,'http://localhost:8888/uploads/thor.jpeg','Action','Thor!',10.0833333333,0,3,'2016-03-25 17:10:24','2016-03-25 17:54:57'),(44,'Silence of the Lambs',3.5,'http://localhost:8888/uploads/lambs.jpeg','Crime','Eek!',10.0833333333,0,2,'2016-03-25 17:10:24','2016-03-25 17:54:23'),(45,'The Broken',3.45,'http://localhost:8888/uploads/iain/thebroken.jpeg','Horror','Yes!',10.0833333333,0,27,'2016-03-25 17:35:27','2016-03-25 18:22:04'),(46,'Serena',6.54,'http://localhost:8888/uploads/serena.jpeg','Action','Serena',10.0833333333,0,3,'2016-03-25 17:10:12','2016-03-25 17:27:36'),(47,'Les Mis',8.5,'http://localhost:8888/uploads/iain/lesmis.jpeg','Drama','A signed copy!',10.25,0,3,'2016-03-25 16:38:39','2016-03-25 17:27:01'),(48,'Salt',4.65,'http://localhost:8888/uploads/salt.jpeg','Action','Angie is cool.',10.25,0,2,'2016-03-25 17:21:08','2016-03-25 18:11:42'),(50,'Deadpool',5.45,'http://localhost:8888/uploads/iain/deadpool.jpg','Action','He\'s funny.',10.1666666667,0,27,'2016-03-25 16:53:20','2016-03-25 17:34:10'),(51,'Avatar',9.99,'http://localhost:8888/uploads/john/avatar.jpg','Action','It\'s awesome!',10.1666666667,0,3,'2016-03-25 17:10:12','2016-03-25 17:50:57');
 /*!40000 ALTER TABLE `adverts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,12 +57,15 @@ DROP TABLE IF EXISTS `transactions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transactions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `advert_id` int(11) NOT NULL,
+  `reason` varchar(128) DEFAULT NULL,
+  `advert_id` int(11) DEFAULT NULL,
   `buyer_id` int(11) NOT NULL,
+  `amount` double NOT NULL DEFAULT '0',
+  `balance` double NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +74,7 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (2,29,3,'2016-03-05 12:23:13','2016-03-05 12:23:13'),(3,28,3,'2016-03-05 12:31:56','2016-03-05 12:31:56'),(4,27,27,'2016-03-05 13:53:35','2016-03-05 13:53:35'),(5,31,3,'2016-03-09 12:08:10','2016-03-09 12:08:10');
+INSERT INTO `transactions` VALUES (19,'Purchase',45,3,3.45,6.55,'2016-03-25 18:22:04','2016-03-25 18:22:04'),(21,'Withdrawal',NULL,3,16.55,20,'2016-03-25 18:38:09','2016-03-25 18:38:09'),(22,'Withdrawal',NULL,3,10,10,'2016-03-25 18:58:22','2016-03-25 18:58:22'),(24,'Deposit',NULL,3,5,30,'2016-03-25 19:00:30','2016-03-25 19:00:30');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +158,7 @@ CREATE TABLE `wallets` (
 
 LOCK TABLES `wallets` WRITE;
 /*!40000 ALTER TABLE `wallets` DISABLE KEYS */;
-INSERT INTO `wallets` VALUES (1,10,1,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(2,19.24,2,'2016-03-04 12:07:58','2016-03-09 12:08:10'),(3,21.71,3,'2016-03-04 12:07:58','2016-03-09 12:08:10'),(4,10,23,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(5,10,26,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(6,10,27,'2016-03-05 13:27:34','2016-03-05 13:54:18');
+INSERT INTO `wallets` VALUES (1,10,1,'2016-03-04 12:07:58','2016-03-25 17:54:23'),(2,10,2,'2016-03-04 12:07:58','2016-03-25 18:11:42'),(3,30,3,'2016-03-04 12:07:58','2016-03-25 19:00:30'),(4,10,23,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(5,10,26,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(6,13.45,27,'2016-03-05 13:27:34','2016-03-25 18:22:04');
 /*!40000 ALTER TABLE `wallets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -168,4 +171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-09 17:06:53
+-- Dump completed on 2016-03-25 18:05:22

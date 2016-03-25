@@ -22,6 +22,14 @@ $app->post('/walletdeposit', $authenticated(), function() use ($app) {
     $wallet->balance += $funds;
     $wallet->save();
 
+    // record the transaction
+    $transaction = $app->transaction;
+    $transaction->reason = "Deposit";
+    $transaction->buyer_id = $app->auth->id;
+    $transaction->amount = $funds;
+    $transaction->balance = $wallet->balance;
+    $transaction->save();
+
     $app->flash('global', 'Desposit successful');
     return $app->response->redirect($app->urlFor('user.wallet'));
   }
@@ -47,6 +55,14 @@ $app->post('/walletwithdraw', $authenticated(), function() use ($app) {
     if ($funds <= $wallet->balance) {
       $wallet->balance -= $funds;
       $wallet->save();
+
+      // record the transaction
+      $transaction = $app->transaction;
+      $transaction->reason = "Withdrawal";
+      $transaction->buyer_id = $app->auth->id;
+      $transaction->amount = $funds;
+      $transaction->balance = $wallet->balance;
+      $transaction->save();
 
       $app->flash('global', 'Withdrawal successful.');
       return $app->response->redirect($app->urlFor('user.wallet'));

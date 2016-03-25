@@ -53,7 +53,7 @@ class User extends Eloquent{
    public function transactions_adverts() {
      return $this
        ->join('transactions', 'users.id', '=', 'transactions.buyer_id')
-       ->join('adverts', 'adverts.id', '=', 'transactions.advert_id')
+       ->leftjoin('adverts', 'adverts.id', '=', 'transactions.advert_id')
        ->where('users.id', $this->id)
        ->get();
    }

@@ -24,10 +24,14 @@
         <tr>
           <td> {{ transaction.updated_at|date("d/m/Y") }} </td>
           <td> {{ transaction.reason }} </td>
-          <td> {{ auth.getUsernameById(transaction.seller_id) }} </td>
+          <td>
+            {% if transaction.seller_id %}
+            {{ auth.getUsernameById(transaction.seller_id) }}
+            {% endif %}
+          </td>
           <td> {{ transaction.title }}</td>
           <td> &pound{{ transaction.amount|number_format(2,'.',',') }} </td>
-          <td> {{ transaction.balance }} </td>
+          <td> &pound{{ transaction.balance|number_format(2,'.',',') }} </td>
         </tr>
         {% endfor %}
       </tbody>
