@@ -13,7 +13,7 @@
         <label class="control-label col-sm-offset-3 col-sm-1" for="identifier">Username </label>
         <div class="col-sm-5">
           <input class="form-control" type="text" name="identifier" id="identifier">
-          <div class="user-warning">
+          <div class="text-danger">
             {% if errors.has('identifier') %} {{ errors.first('identifier') }} {% endif %}
           </div>
         </div>
@@ -22,7 +22,7 @@
         <label class="control-label col-sm-offset-3 col-sm-1" for="password">Password: </label>
         <div class="col-sm-5">
           <input class="form-control" type="password" name="password" id="password">
-          <div class="user-warning">
+          <div class="text-danger">
             {% if errors.has('password') %} {{ errors.first('password') }} {% endif %}
           </div>
         </div>

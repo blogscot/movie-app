@@ -4,72 +4,72 @@
 
 {% block content %}
   <div class="row">
-    <div class="col-sm-offset-3 col-sm-9">
+    <div class="col-sm-offset-3 col-sm-6">
       <h2>Please register</h2>
     </div>
   </div>
 
   <form class="form-horizontal" action="{{ urlFor('auth.register.post') }}" method="post" autocomplete="off">
-    <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1"  for="firstname">Firstname: </label>
+    <div class="form-group row">
+      <label class="control-label col-sm-offset-2 col-sm-2" for="firstname">Firstname: </label>
       <div class="col-sm-5">
         <input class="form-control" type="text" name="firstname" id="firstname" {% if request.post('firstname') %}
         value="{{ request.post('firstname') }}" {% endif %}>
-        <div class="user-warning">
+        <div class="text-danger">
           {% if errors.has('firstname') %}{{ errors.first('firstname') }} {% endif %}
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1"  for="surname">Surname: </label>
+    <div class="form-group row">
+      <label class="control-label col-sm-offset-2 col-sm-2" for="surname">Surname: </label>
       <div class="col-sm-5">
         <input class="form-control" type="text" name="surname" id="surname" {% if request.post('surname') %}
         value="{{ request.post('surname') }}" {% endif %}>
-        <div class="user-warning">
+        <div class="text-danger">
           {% if errors.has('surname') %}{{ errors.first('surname') }} {% endif %}
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1"  for="username">Username: </label>
+    <div class="form-group row">
+      <label class="control-label col-sm-offset-2 col-sm-2" for="username">Username: </label>
       <div class="col-sm-5">
         <input class="form-control" type="text" name="username" id="username" {% if request.post('username') %}
         value="{{ request.post('username') }}" {% endif %}>
-        <div class="user-warning">
+        <div class="text-danger">
           {% if errors.has('username') %}{{ errors.first('username') }} {% endif %}
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1"  for="email">Email: </label>
+    <div class="form-group row">
+      <label class="control-label col-sm-offset-2 col-sm-2" for="email">Email: </label>
       <div class="col-sm-5">
         <input class="form-control" type="text" name="email" id="email" {% if request.post('email') %}
         value="{{ request.post('email') }}" {% endif %}>
-        <div class="user-warning">
+        <div class="text-danger">
           {% if errors.has('email') %}{{ errors.first('email') }} {% endif %}
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1"  for="password1">Password: </label>
+    <div class="form-group row">
+      <label class="control-label col-sm-offset-2 col-sm-2" for="password1">Password: </label>
       <div class="col-sm-5">
         <input class="form-control" type="password" name="password1" id="password1">
-        <div class="user-warning">
+        <div class="text-danger">
           {% if errors.has('password1') %}{{ errors.first('password1') }} {% endif %}
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1"  for="password2">Confirm Password: </label>
+    <div class="form-group row">
+      <label class="control-label col-sm-offset-2 col-sm-2" for="password2">Confirm Password: </label>
       <div class="col-sm-5">
         <input class="form-control" type="password" name="password2" id="password2">
-        <div class="user-warning">
+        <div class="text-danger">
           {% if errors.has('password2') %}{{ errors.first('password2') }} {% endif %}
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <div class="col-sm-offset-3 col-sm-1">
+    <div class="form-group row">
+      <div class="col-sm-offset-3 col-sm-2">
         <button class="btn btn-primary" type="submit">Register</button>
       </div>
    </div>

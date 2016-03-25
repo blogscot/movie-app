@@ -15,6 +15,14 @@ body {
   padding: 0 0 60px;
 }
 
+h2 {
+  margin-bottom: 50px;
+}
+
+form button[type="submit"] {
+  margin-top: 20px;
+}
+
 .navbar-static-bottom {
   margin-bottom: 0;
 }
@@ -30,16 +38,6 @@ select.default_category {
 a.back-btn {
   color: #fff;
   text-decoration: none !important;
-}
-
-li > img {
-  width: 180px;
-  }
-
-.user-warning {
-  color: red;
-  font-weight: bold;
-  padding-left: 0;
 }
 
 .well {
