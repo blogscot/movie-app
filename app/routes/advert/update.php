@@ -34,10 +34,13 @@ $app->post('/update/:id', function($id) use ($app) {
         // recalculate daily ad rate
         $ad_rate = $app->advert->calculate_ad_rate($description);
 
+        // store user uploads in their own directory
+        $file_url = $app->config->get('app.uploads') . $app->auth->username . "/" . $fileToUpload;
+
         $advert = $app->advert->where('id', $id)->first();
         $advert->title = $title;
         $advert->price = $price;
-        $advert->image_url = $app->config->get('app.uploads') . $fileToUpload;
+        $advert->image_url = $file_url;
         $advert->category = $category;
         $advert->description = $description;
         $advert->ad_rate = $ad_rate;

@@ -4,10 +4,6 @@
 .movie-item {
   min-height: 420px;
 }
-{# override the main button style #}
-form button[type="submit"] {
-  margin-top: auto;
-}
 {% endblock %}
 
 {% block title %}Buy Movies{% endblock %}
@@ -34,7 +30,7 @@ form button[type="submit"] {
   <div class="row">
     {% for advert in adverts if not advert.isSold %}
 
-      <div class="col-xs-offset-1 col-xs-10 col-sm-3 movie-item">
+      <div class="col-xs-offset-1 col-xs-10 col-sm-2 movie-item">
         <img class="img-thumbnail" src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
         <div>
           <label>Movie Title:</label>

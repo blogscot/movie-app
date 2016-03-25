@@ -2,7 +2,7 @@
 
 use MovieApp\Advert\Advert;
 
-$app->get('/addadvert', function() use ($app) {
+$app->get('/addadvert', $authenticated(), function() use ($app) {
   $app->render('advert/add.twig');
 })->name('advert.add');
 
@@ -31,10 +31,13 @@ $app->post('/addadvert', function() use ($app) {
       // calculate daily ad rate
       $ad_rate = $app->advert->calculate_ad_rate($description);
 
+      // store user uploads in their own directory
+      $file_url = $app->config->get('app.uploads') . $app->auth->username . "/" . $fileToUpload;
+
       $advert = new Advert;
       $advert->title = $title;
       $advert->price = $price;
-      $advert->image_url = $app->config->get('app.uploads') . $fileToUpload;
+      $advert->image_url = $file_url;
       $advert->category = $category;
       $advert->description = $description;
       $advert->ad_rate = $ad_rate;
@@ -57,7 +60,14 @@ $app->post('/addadvert', function() use ($app) {
 })->name('advert.add.post');
 
 function uploadImageFile($app) {
-  $target_dir = "uploads/";
+
+  $uploads = "uploads/";
+  $target_dir = "uploads/" . $app->auth->username . "/";
+
+  if (!is_dir($target_dir)) {
+    mkdir($target_dir);
+  }
+
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
@@ -70,13 +80,9 @@ function uploadImageFile($app) {
     $app->flash('global', 'File is not an image.');
     return false;
   }
-  // Check if file already exists
-  if (file_exists($target_file)) {
-    $app->flash('global', 'Sorry, file already exists.');
-    return false;
-  }
+
   // Check file size
-  if ($_FILES["fileToUpload"]["size"] > 500000) {
+  if ($_FILES["fileToUpload"]["size"] > 100000) {
       $app->flash('global', 'Sorry, your file is too large.');
       return false;
   }
