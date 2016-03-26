@@ -31,12 +31,14 @@
   <hr>
 
   <div class="row">
-    {# filter out sold items, plus don't allow users to buy their own goods #}
-    {% for advert in adverts if not advert.isSold and auth.id != advert.seller_id%}
+    {# filter out sold, and expired items, plus don't allow users to buy their own goods #}
+    {% for advert in adverts
+      if not advert.isSold and auth.id != advert.seller_id and not advert.hasExpired
+      %}
       <div class="col-xs-offset-1 col-xs-7 col-sm-2 movie-item">
         <img class="img-thumbnail" src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
         <div>
-          <label>Movie Title:</label>
+          <label>Title:</label>
           <span>{{ advert.title }}</span>
         </div>
         <div>

@@ -5,7 +5,7 @@
 {% block content %}
   <h2>My Wallet</h2>
   <p class="well text-info">
-    Your current balance is: &pound{{ wallet.balance|number_format(2,'.',',') }}
+    Your current balance is: &pound;{{ wallet.balance|number_format(2,'.',',') }}
   </p>
   <hr/>
   <form action="{{ urlFor('user.deposit.post')}}" method="post" autocomplete="off">

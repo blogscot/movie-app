@@ -30,8 +30,8 @@
             {% endif %}
           </td>
           <td> {{ transaction.note }}</td>
-          <td> &pound{{ transaction.amount|number_format(2,'.',',') }} </td>
-          <td> &pound{{ transaction.balance|number_format(2,'.',',') }} </td>
+          <td> &pound;{{ transaction.amount|number_format(2,'.',',') }} </td>
+          <td> &pound;{{ transaction.balance|number_format(2,'.',',') }} </td>
         </tr>
         {% endfor %}
       </tbody>

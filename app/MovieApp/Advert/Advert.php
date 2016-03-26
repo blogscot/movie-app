@@ -42,6 +42,14 @@ class Advert extends Eloquent {
       ->get();
   }
 
+  // returns true if an advert is out of date, or expired
+  public function hasExpired() {
+    $expiry = date($this->expires_on);
+    $now = date("Y-m-d H:i:s");
+
+    return $expiry < $now;
+  }
+
   // Relationships
 
   public function advert() {
