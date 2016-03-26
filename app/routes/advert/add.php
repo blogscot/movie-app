@@ -29,55 +29,55 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
 
   if ($v->passes()) {
 
-    //upload image file
-    if (uploadImageFile($app) != false) {
+    // calculate daily ad rate
+    $ad_rate = $app->advert->calc_daily_rate($description);
 
-      // calculate daily ad rate
-      $ad_rate = $app->advert->calc_daily_rate($description);
+    $wallet = $app->auth->wallet;
+    $ad_cost = round($ad_rate * $duration, 2);
 
-      // check the user has enough money
-      $wallet = $app->auth->wallet;
-      $ad_cost = round($ad_rate * $duration, 2);
+    // check the user has enough money
+    if ($ad_cost < $wallet->balance) {
 
-      if ($ad_cost < $wallet->balance) {
-        // Deduct the cost of the adverts
-        $wallet->balance -= $ad_cost;
-        $wallet->save();
-
-        // store user uploads in their own directory
-        $file_url = $app->config->get('app.uploads') . $app->auth->username . "/" . $fileToUpload;
-          
-        // Save the new advert
-        $advert = new Advert;
-        $advert->title = $title;
-        $advert->price = $price;
-        $advert->image_url = $file_url;
-        $advert->category = $category;
-        $advert->description = $description;
-        $advert->ad_rate = $ad_rate;
-        $advert->expires_on = date('Y/m/d H:i:s', strtotime(getWeeks($duration)));
-        $advert->seller_id = $app->auth->id;
-        $advert->save();
-
-        // record the transaction
-        $transaction = $app->transaction;
-        $transaction->reason = "New Ad";
-        $transaction->buyer_id = $app->auth->id;
-        $transaction->amount = $ad_cost;
-        $transaction->balance = $wallet->balance;
-        $transaction->save();
-
-      } else {
-        $app->flash('global', 'Please add funds to complete this purchase.');
+      // Upload image file
+      if (uploadImageFile($app) == false) {
+        // Display upload flash error message
         return $app->response->redirect($app->urlFor('advert.add'));
       }
 
-      $app->flash('global', 'New Advert added!');
-      $app->response->redirect($app->urlFor('advert.viewall'));
+      // Deduct the cost of the adverts
+      $wallet->balance -= $ad_cost;
+      $wallet->save();
+
+      // store user uploads in their own directory
+      $file_url = $app->config->get('app.uploads') . $app->auth->username . "/" . $fileToUpload;
+
+      // Save the new advert
+      $advert = new Advert;
+      $advert->title = $title;
+      $advert->price = $price;
+      $advert->image_url = $file_url;
+      $advert->category = $category;
+      $advert->description = $description;
+      $advert->expires_on = date('Y/m/d H:i:s', strtotime('+' . $duration . ' days'));
+      $advert->seller_id = $app->auth->id;
+      $advert->save();
+
+      // Record the transaction
+      $transaction = $app->transaction;
+      $transaction->reason = "New Ad";
+      $transaction->note = $advert->title;
+      $transaction->buyer_id = $app->auth->id;
+      $transaction->amount = $ad_cost;
+      $transaction->balance = $wallet->balance;
+      $transaction->save();
+
     } else {
-      // display upload flash error message
+      $app->flash('global', 'Please add funds to complete this purchase.');
       return $app->response->redirect($app->urlFor('advert.add'));
     }
+
+    $app->flash('global', 'New Advert added!');
+    return $app->response->redirect($app->urlFor('advert.viewall'));
   }
 
   $app->render('advert/add.twig', [
@@ -87,31 +87,8 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
 
 })->name('advert.add.post');
 
-function getWeeks($duration) {
-
-  switch ($duration) {
-    case 7:
-      $weeks = "+1 Week";
-      break;
-    case 14:
-      $weeks = "+2 Week";
-      break;
-    case 21:
-      $weeks = "+3 Week";
-      break;
-    case 28:
-      $weeks = "+4 Week";
-      break;
-    default:
-      $weeks = "+1 Week";
-      break;
-  }
-  return $weeks;
-}
-
 function uploadImageFile($app) {
-
-  $uploads = "uploads/";
+  // each user gets their own subfolder
   $target_dir = "uploads/" . $app->auth->username . "/";
 
   if (!is_dir($target_dir)) {

@@ -4,6 +4,9 @@
   .advert {
     min-height: 350px;
   }
+  .img-thumbnail {
+    margin-bottom: 4px;
+  }
 {% endblock %}
 
 {% block title %}Home{% endblock %}
@@ -20,7 +23,7 @@
       <div class="col-sm-3 advert">
         <img class="img-thumbnail" src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
         <div>
-          <label>Movie Title:</label>
+          <label>Title:</label>
           <span>{{ advert.title }}</span>
         </div>
         <div>

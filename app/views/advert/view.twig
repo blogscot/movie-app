@@ -14,25 +14,25 @@
     </div>
     <div class="form-group">
        <label class="control-label col-sm-offset-3 col-sm-1">Seller: </label>
-       <div class="col-sm-5">
+       <div class="col-sm-2">
          <input class="form-control" type="text" value="{{ auth.getUsernameById(advert.seller_id)|capitalize }}" readonly></input>
        </div>
     </div>
     <div class="form-group">
        <label class="control-label col-sm-offset-3 col-sm-1">Price: </label>
-       <div class="col-sm-5">
+       <div class="col-sm-2">
          <input class="form-control" type="number" value="{{ advert.price|number_format(2,'.',',') }}" readonly>
        </div>
     </div>
     <div class="form-group">
        <label class="control-label col-sm-offset-3 col-sm-1">Movie:</label>
        <div class="col-sm-5">
-         <img src="{{ advert.image_url }}" alt="Advert Image">
+         <img class="img-thumbnail" src="{{ advert.image_url }}" alt="Advert Image">
        </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-offset-3 col-sm-1">Category: </label>
-      <div class="col-sm-5">
+      <div class="col-sm-2">
         <select class="form-control" class="default_category" readonly>
           <option selected>{{ advert.category }}</option>
         </select>

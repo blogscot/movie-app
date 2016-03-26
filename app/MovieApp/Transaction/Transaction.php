@@ -10,6 +10,7 @@ class Transaction extends Eloquent {
   protected $fillable = [
     'advert_id',
     'reason',
+    'note',
     'seller_id',
     'buyer_id',
     'amount',

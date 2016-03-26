@@ -41,7 +41,7 @@ $app->post('/register', $guest(), function() use ($app){
 
       // Each new user is given a wallet
       $app->wallet->create([
-        'balance' => 10,   // Some initial test money
+        'balance' => 0,
         'user_id' => $user->id
       ]);
 

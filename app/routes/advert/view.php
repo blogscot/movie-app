@@ -33,6 +33,7 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
     $transaction->reason = "Purchase";
     $transaction->buyer_id = $buyer;
     $transaction->advert_id = $advert->id;
+    $transaction->note = $advert->title;
     $transaction->amount = $advert->price;
     $transaction->balance = $wallet_buyer->balance;
     $transaction->save();

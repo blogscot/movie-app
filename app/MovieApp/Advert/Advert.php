@@ -13,7 +13,6 @@ class Advert extends Eloquent {
     'image_url',
     'category',
     'description',
-    'ad_rate',
     'expires_on',
     'isSold',
     'seller_id'

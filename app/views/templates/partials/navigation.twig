@@ -31,7 +31,7 @@
           {% if auth.isAdmin %}
           <li><a href="#">Admin</a></li>
           {% endif %}
-          <li><a href="{{ urlFor('user.profile') }}">Profile</a></li>
+          <li><a href="{{ urlFor('user.profile') }}">Dashboard</a></li>
           <li><a href="{{ urlFor('auth.logout') }}">Logout {{ auth.username|capitalize}}</a></li>
         {% else %}
           <li><a href="{{ urlFor('auth.login') }}">Login</a></li>
