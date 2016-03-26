@@ -28,52 +28,36 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
   ]);
 
   if ($v->passes()) {
+
     //upload image file
     if (uploadImageFile($app) != false) {
-
-      switch ($duration) {
-        case 7:
-          $weeks = "+1 Week";
-          break;
-        case 14:
-          $weeks = "+2 Week";
-          break;
-        case 21:
-          $weeks = "+3 Week";
-          break;
-        case 28:
-          $weeks = "+4 Week";
-          break;
-        default:
-          $weeks = "+1 Week";
-          break;
-      }
-
-      // store user uploads in their own directory
-      $file_url = $app->config->get('app.uploads') . $app->auth->username . "/" . $fileToUpload;
 
       // calculate daily ad rate
       $ad_rate = $app->advert->calc_daily_rate($description);
 
-      $advert = new Advert;
-      $advert->title = $title;
-      $advert->price = $price;
-      $advert->image_url = $file_url;
-      $advert->category = $category;
-      $advert->description = $description;
-      $advert->ad_rate = $ad_rate;
-      $advert->expires_on = date('Y/m/d H:i:s', strtotime($weeks));
-      $advert->seller_id = $app->auth->id;
-      $advert->save();
-
-      // Deduct the cost of the adverts
       // check the user has enough money
       $wallet = $app->auth->wallet;
       $ad_cost = round($ad_rate * $duration, 2);
 
       if ($ad_cost < $wallet->balance) {
+        // Deduct the cost of the adverts
         $wallet->balance -= $ad_cost;
         $wallet->save();
+
+        // store user uploads in their own directory
+        $file_url = $app->config->get('app.uploads') . $app->auth->username . "/" . $fileToUpload;
+          
+        // Save the new advert
+        $advert = new Advert;
+        $advert->title = $title;
+        $advert->price = $price;
+        $advert->image_url = $file_url;
+        $advert->category = $category;
+        $advert->description = $description;
+        $advert->ad_rate = $ad_rate;
+        $advert->expires_on = date('Y/m/d H:i:s', strtotime(getWeeks($duration)));
+        $advert->seller_id = $app->auth->id;
+        $advert->save();
 
         // record the transaction
         $transaction = $app->transaction;
@@ -102,6 +86,28 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
   ]);
 
 })->name('advert.add.post');
+
+function getWeeks($duration) {
+
+  switch ($duration) {
+    case 7:
+      $weeks = "+1 Week";
+      break;
+    case 14:
+      $weeks = "+2 Week";
+      break;
+    case 21:
+      $weeks = "+3 Week";
+      break;
+    case 28:
+      $weeks = "+4 Week";
+      break;
+    default:
+      $weeks = "+1 Week";
+      break;
+  }
+  return $weeks;
+}
 
 function uploadImageFile($app) {
 
