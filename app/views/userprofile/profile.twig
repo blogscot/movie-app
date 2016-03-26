@@ -10,17 +10,26 @@
 
   <h2>{{ auth.username|capitalize }}'s Dashboard</h2>
   <div class="row">
-    <div class="well col-sm-5">
-    <label>Admin</label>
-    <div> <a href="{{ urlFor('auth.password')}}">Change Password</a> </div>
-    <div> <a href="#">Delete Account</a> </div>
+    <div class="well col-sm-3">
+    <label>Movies</label>
+    <div> <a href="{{ urlFor('advert.viewall') }}">Buy Movies</a> </div>
+    <div> <a href="{{ urlFor('advert.add') }}">Sell Movies</a> </div>
     </div>
-    <div class="well col-sm-5">
+    <div class="well col-sm-3">
     <label>Account</label>
     <div> <a href="{{ urlFor('user.wallet') }}">View My Wallet</a> </div>
     <div> <a href="{{ urlFor('advert.viewbyuser') }}">View My Adverts</a> </div>
     <div> <a href="{{ urlFor('advert.transactions') }}">View Transactions</a> </div>
+    <hr>
+    <div> <a href="{{ urlFor('auth.password')}}">Change Password</a> </div>
+    <div> <a href="#">Delete Account</a> </div>
     </div>
+    {% if auth.isAdmin %}
+      <div class="well col-sm-3">
+        <label>Admin</label>
+        <div> <a href="{{ urlFor('admin.viewusers')}}">View Users</a> </div>
+      </div>
+    {% endif %}
   </div>
 
 {% endblock %}

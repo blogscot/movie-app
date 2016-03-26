@@ -34,6 +34,11 @@ class User extends Eloquent{
       return $this->username;
    }
 
+  // get all users
+  public function get_all_users() {
+   return $this->get();
+  }
+
    // Get the username for the a user's $id
    public function getUsernameById($id) {
       $user = $this->where('id', $id)->first();
