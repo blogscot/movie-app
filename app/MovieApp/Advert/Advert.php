@@ -14,12 +14,14 @@ class Advert extends Eloquent {
     'category',
     'description',
     'ad_rate',
+    'expires_on',
     'isSold',
     'seller_id'
   ];
 
-  public function calculate_ad_rate($description) {
-    return str_word_count($description) / 12 + 10;
+  public function calc_daily_rate($description) {
+    // 50 words = 10p per day, 1 image = 10p per day
+    return round(str_word_count($description) / 500 + 0.1, 2, PHP_ROUND_HALF_UP);
   }
 
   public function get_all() {

@@ -32,7 +32,7 @@ $app->post('/update/:id', $authenticated(), function($id) use ($app) {
 
       if (uploadImageFile($app) != false) {
         // recalculate daily ad rate
-        $ad_rate = $app->advert->calculate_ad_rate($description);
+        $ad_rate = $app->advert->calc_daily_rate($description);
 
         // store user uploads in their own directory
         $file_url = $app->config->get('app.uploads') . $app->auth->username . "/" . $fileToUpload;

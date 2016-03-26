@@ -22,6 +22,8 @@ use MovieApp\Middleware\BeforeMiddleware;
 session_cache_limiter(false);
 session_start();
 
+date_default_timezone_set("Europe/London");
+
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
