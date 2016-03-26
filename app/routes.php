@@ -3,6 +3,8 @@
 require INC_ROOT . '/app/routes/home.php';
 
 require INC_ROOT . '/app/routes/admin/users.php';
+require INC_ROOT . '/app/routes/admin/transactions.php';
+require INC_ROOT . '/app/routes/admin/adverts.php';
 
 require INC_ROOT . '/app/routes/auth/login.php';
 require INC_ROOT . '/app/routes/auth/logout.php';

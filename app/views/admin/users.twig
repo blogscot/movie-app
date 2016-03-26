@@ -4,27 +4,35 @@
 
 {% block content %}
 
-  <h2>View Users</h2>
 
-  <table class="table table-bordered table-hover table-striped">
-    <thead>
-      <tr>
-        <th> ID </th>
-        <th> Username </th>
-        <th> Firstname </th>
-        <th> Surname </th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for user in users %}
-      <tr>
-        <td> {{user.id}} </td>
-        <td> {{user.username}} </td>
-        <td> {{user.firstname}} </td>
-        <td> {{user.surname}} </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-9">
+      <h2>View Users</h2>
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th> ID </th>
+            <th> Username </th>
+            <th> Firstname </th>
+            <th> Surname </th>
+            <th>Transactions</th>
+            <th>Adverts</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td> {{user.id}} </td>
+            <td> {{user.username}} </td>
+            <td> {{user.firstname}} </td>
+            <td> {{user.surname}} </td>
+            <td> <a href="{{urlFor('admin.transactions', {id: user.id})}}">View</a> </td>
+            <td> <a href="{{urlFor('admin.adverts', {id: user.id})}}">View</a> </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 {% endblock %}
