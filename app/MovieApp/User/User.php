@@ -52,7 +52,7 @@ class User extends Eloquent{
    }
 
    // Delete the users account.
-   // Transactions records are not deleted.
+   // Transaction records are not deleted.
    public function deleteAccount() {
      // let's assume, no monies refunded
      $this->wallet()->delete();

@@ -10,16 +10,17 @@ $app->get('/viewadvert/:id', $authenticated(), function($id) use ($app) {
 
 $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
   $advert = $app->advert->find_by_id($id);
-  $buyer = $app->auth->id;
-  $seller = $advert->seller_id;
+  $buyer_id = $app->auth->id;
+  $seller_id = $advert->seller_id;
   $wallet_buyer = $app->auth->wallet;
-  $wallet_seller = $app->wallet->get_wallet($seller);
+  $wallet_seller = $app->wallet->get_wallet($seller_id);
   $transaction = $app->transaction;
 
   // the user wants to buy the selected movie
   // check the user has enough money
   if ($advert->price < $wallet_buyer->balance) {
 
+    // exchange monies
     $wallet_buyer->balance -= $advert->price;
     $wallet_seller->balance += $advert->price;
     $wallet_buyer->save();
@@ -29,14 +30,16 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
     $advert->isSold = true;
     $advert->save();
 
-    // record the sale transaction
+    // record the sale transaction for the buyer
     $transaction->reason = "Purchase";
-    $transaction->buyer_id = $buyer;
+    $transaction->buyer_id = $buyer_id;
     $transaction->advert_id = $advert->id;
     $transaction->note = $advert->title;
     $transaction->amount = $advert->price;
     $transaction->balance = $wallet_buyer->balance;
     $transaction->save();
+
+    //TODO record the transaction for the seller
 
     $app->flash('global', 'Your purchase is complete.');
     return $app->response->redirect($app->urlFor('advert.viewall'));
