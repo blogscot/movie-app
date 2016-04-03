@@ -30,16 +30,14 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
     $advert->isSold = true;
     $advert->save();
 
-    // record the sale transaction for the buyer
+    // record the sale transaction
+    $transaction->title = $advert->title;
     $transaction->reason = "Purchase";
     $transaction->buyer_id = $buyer_id;
-    $transaction->advert_id = $advert->id;
-    $transaction->note = $advert->title;
+    $transaction->seller_id = $seller_id;
     $transaction->amount = $advert->price;
     $transaction->balance = $wallet_buyer->balance;
     $transaction->save();
-
-    //TODO record the transaction for the seller
 
     $app->flash('global', 'Your purchase is complete.');
     return $app->response->redirect($app->urlFor('advert.viewall'));

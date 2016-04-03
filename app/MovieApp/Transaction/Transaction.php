@@ -8,11 +8,10 @@ class Transaction extends Eloquent {
   protected $table = 'transactions';
 
   protected $fillable = [
-    'advert_id',
+    'title',
     'reason',
-    'note',
-    'seller_id',
     'buyer_id',
+    'seller_id',
     'amount',
     'balance',
   ];

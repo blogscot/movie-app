@@ -2,6 +2,8 @@
 
 namespace MovieApp\User;
 
+use MovieApp\Transaction\Transaction;
+
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class User extends Eloquent{
@@ -71,12 +73,9 @@ class User extends Eloquent{
      return $this->hasMany('MovieApp\Advert\Advert', 'seller_id');
    }
 
-   public function transactions_adverts() {
-     return $this
-       ->join('transactions', 'users.id', '=', 'transactions.buyer_id')
-       ->leftjoin('adverts', 'adverts.id', '=', 'transactions.advert_id')
-       ->where('users.id', $this->id)
-       ->get();
+   public function all_transactions() {
+      return Transaction::where('seller_id', $this->id)
+        ->orWhere('buyer_id', $this->id)->get();
    }
 
   public function transactions() {

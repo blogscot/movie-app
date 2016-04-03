@@ -35,7 +35,7 @@ CREATE TABLE `adverts` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `adverts` (
 
 LOCK TABLES `adverts` WRITE;
 /*!40000 ALTER TABLE `adverts` DISABLE KEYS */;
-INSERT INTO `adverts` VALUES (71,'Avatar',8.99,'http://localhost:8888/uploads/colin/avatar.jpg','Action','This is a fantasy film.','2016-04-09 16:01:02',1,33,'2016-03-26 17:12:57','2016-03-26 17:12:57'),(72,'Thor',9.99,'http://localhost:8888/uploads/colin/thor.jpeg','Action','This is a fantasy film. I should add this category to the list.','2016-04-09 16:02:45',1,33,'2016-03-26 17:11:12','2016-03-26 17:11:12'),(73,'The Silence of the Lambs',7.5,'http://localhost:8888/uploads/colin/lambs.jpeg','Crime','This is a crime movie.','2016-04-23 16:05:26',1,33,'2016-03-26 17:07:22','2016-03-26 17:07:22');
+INSERT INTO `adverts` VALUES (71,'Avatar',8.99,'http://localhost:8888/uploads/colin/avatar.jpg','Action','This is a fantasy film.','2016-04-09 16:01:02',0,33,'2016-03-26 17:43:13','2016-03-26 17:12:57'),(72,'Thor',9.99,'http://localhost:8888/uploads/colin/thor.jpeg','Action','This is a fantasy film. I should add this category to the list.','2016-05-09 16:02:45',1,32,'2016-04-03 12:01:58','2016-04-03 12:01:58'),(73,'The Silence of the Lambs',7.5,'http://localhost:8888/uploads/colin/lambs.jpeg','Crime','This is a crime movie.','2016-04-23 16:05:26',0,33,'2016-03-26 17:45:21','2016-03-26 17:07:22'),(74,'The Broken',8.88,'http://localhost:8888/uploads/iain/thebroken.jpeg','Romance','This is a romance film.','2016-04-09 17:03:14',0,30,'2016-04-03 11:52:31','2016-04-03 11:36:40'),(78,'TestFilm',3.45,'http://localhost:8888/uploads/iain/avatar.jpg','Action','Hoo!','2016-04-24 15:47:16',0,30,'2016-04-03 15:47:16','2016-04-03 15:47:16');
 /*!40000 ALTER TABLE `adverts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,16 +57,16 @@ DROP TABLE IF EXISTS `transactions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transactions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) DEFAULT NULL,
   `reason` varchar(128) DEFAULT NULL,
-  `note` varchar(128) DEFAULT NULL,
-  `advert_id` int(11) DEFAULT NULL,
   `buyer_id` int(11) NOT NULL,
+  `seller_id` int(11) NOT NULL,
   `amount` double NOT NULL DEFAULT '0',
   `balance` double NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (44,'New Ad','Avatar',NULL,33,1.54,8.46,'2016-03-26 17:01:02','2016-03-26 17:01:02'),(45,'Deposit',NULL,NULL,33,5,13.46,'2016-03-26 17:01:23','2016-03-26 17:01:23'),(46,'New Ad','Thor',NULL,33,1.82,11.64,'2016-03-26 17:02:45','2016-03-26 17:02:45'),(47,'New Ad','The Silence of the Lambs',NULL,33,3.08,8.56,'2016-03-26 17:05:26','2016-03-26 17:05:26'),(48,'Purchase','The Silence of the Lambs',73,30,7.5,2.5,'2016-03-26 17:07:22','2016-03-26 17:07:22'),(49,'Deposit',NULL,NULL,30,20,22.5,'2016-03-26 17:10:40','2016-03-26 17:10:40'),(50,'Purchase','Thor',72,30,9.99,12.51,'2016-03-26 17:11:12','2016-03-26 17:11:12'),(51,'Purchase','Avatar',71,30,8.99,3.52,'2016-03-26 17:12:57','2016-03-26 17:12:57');
+INSERT INTO `transactions` VALUES (68,NULL,'Deposit',30,0,10,40.86,'2016-04-03 15:44:43','2016-04-03 15:44:43'),(69,NULL,'Withdrawal',30,0,20,20.86,'2016-04-03 15:45:17','2016-04-03 15:45:17'),(70,'TestFilm','New Ad',0,30,2.1,18.76,'2016-04-03 15:47:16','2016-04-03 15:47:16');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +93,7 @@ CREATE TABLE `user_permissions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `user_permissions` (
 
 LOCK TABLES `user_permissions` WRITE;
 /*!40000 ALTER TABLE `user_permissions` DISABLE KEYS */;
-INSERT INTO `user_permissions` VALUES (19,22,0,'2016-02-20 01:49:19','2016-02-20 01:49:19'),(18,3,0,'2016-02-20 01:48:23','2016-02-20 01:48:23'),(17,2,0,'2016-02-20 01:47:37','2016-02-20 01:47:37'),(16,1,0,'2016-02-19 23:48:32','2016-02-19 23:48:32'),(20,23,1,'2016-02-29 16:40:24','2016-02-29 16:40:24'),(21,26,0,'2016-03-04 12:07:58','2016-03-04 12:07:58'),(22,27,0,'2016-03-05 13:27:34','2016-03-05 13:27:34'),(23,28,0,'2016-03-26 16:30:09','2016-03-26 16:30:09'),(24,29,0,'2016-03-26 16:33:10','2016-03-26 16:33:10'),(25,30,0,'2016-03-26 16:35:30','2016-03-26 16:35:30'),(26,31,0,'2016-03-26 16:37:50','2016-03-26 16:37:50'),(27,32,0,'2016-03-26 16:38:51','2016-03-26 16:38:51'),(28,33,0,'2016-03-26 16:39:13','2016-03-26 16:39:13');
+INSERT INTO `user_permissions` VALUES (25,30,1,'2016-03-26 16:35:30','2016-03-26 16:35:30'),(26,31,0,'2016-03-26 16:37:50','2016-03-26 16:37:50'),(27,32,0,'2016-03-26 16:38:51','2016-03-26 16:38:51'),(28,33,0,'2016-03-26 16:39:13','2016-03-26 16:39:13');
 /*!40000 ALTER TABLE `user_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +150,7 @@ CREATE TABLE `wallets` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `wallets` (
 
 LOCK TABLES `wallets` WRITE;
 /*!40000 ALTER TABLE `wallets` DISABLE KEYS */;
-INSERT INTO `wallets` VALUES (8,3.52,30,'2016-03-26 16:35:30','2016-03-26 17:12:57'),(9,0,31,'2016-03-26 16:37:50','2016-03-26 16:37:50'),(10,0,32,'2016-03-26 16:38:51','2016-03-26 16:38:51'),(11,35.04,33,'2016-03-26 16:39:13','2016-03-26 17:12:57');
+INSERT INTO `wallets` VALUES (8,18.76,30,'2016-03-26 16:35:30','2016-04-03 15:47:16'),(9,0,31,'2016-03-26 16:37:50','2016-03-26 16:37:50'),(10,39.97,32,'2016-03-26 16:38:51','2016-04-03 12:01:58'),(11,25.05,33,'2016-03-26 16:39:13','2016-04-03 12:01:58');
 /*!40000 ALTER TABLE `wallets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -172,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-26 17:15:56
+-- Dump completed on 2016-04-03 16:48:46

@@ -13,6 +13,7 @@
         <tr>
           <th> Date </th>
           <th> Reason </th>
+          <th> By </th>
           <th> Seller </th>
           <th> Note </th>
           <th> Amount </th>
@@ -25,11 +26,16 @@
           <td> {{ transaction.updated_at|date("d/m/Y") }} </td>
           <td> {{ transaction.reason }} </td>
           <td>
-            {% if transaction.seller_id %}
-            {{ auth.getUsernameById(transaction.seller_id) }}
+            {% if transaction.buyer_id %}
+            {{ auth.getUsernameById(transaction.buyer_id)|capitalize }}
             {% endif %}
           </td>
-          <td> {{ transaction.note }}</td>
+          <td>
+            {% if transaction.seller_id %}
+            {{ auth.getUsernameById(transaction.seller_id)|capitalize }}
+            {% endif %}
+          </td>
+          <td> {{ transaction.title }}</td>
           <td> &pound;{{ transaction.amount|number_format(2,'.',',') }} </td>
           <td> &pound;{{ transaction.balance|number_format(2,'.',',') }} </td>
         </tr>

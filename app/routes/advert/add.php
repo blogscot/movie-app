@@ -64,9 +64,9 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
 
       // Record the transaction
       $transaction = $app->transaction;
+      $transaction->title = $advert->title;
       $transaction->reason = "New Ad";
-      $transaction->note = $advert->title;
-      $transaction->buyer_id = $app->auth->id;
+      $transaction->buyer_id = $app->auth->id; // action by user
       $transaction->amount = $ad_cost;
       $transaction->balance = $wallet->balance;
       $transaction->save();
