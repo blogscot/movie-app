@@ -15,8 +15,9 @@
             <th> Username </th>
             <th> Firstname </th>
             <th> Surname </th>
-            <th>Transactions</th>
-            <th>Adverts</th>
+            <th> Email </th>
+            <th class="text-center">Transactions</th>
+            <th class="text-center">Adverts</th>
           </tr>
         </thead>
         <tbody>
@@ -26,8 +27,9 @@
             <td> {{user.username}} </td>
             <td> {{user.firstname}} </td>
             <td> {{user.surname}} </td>
-            <td> <a href="{{urlFor('admin.transactions', {id: user.id})}}">View</a> </td>
-            <td> <a href="{{urlFor('admin.adverts', {id: user.id})}}">View</a> </td>
+            <td> {{user.email}} </td>
+            <td class="text-center"> <a href="{{urlFor('admin.transactions', {id: user.id})}}">View</a> </td>
+            <td class="text-center"> <a href="{{urlFor('admin.adverts', {id: user.id})}}">View</a> </td>
           </tr>
           {% endfor %}
         </tbody>

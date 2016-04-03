@@ -26,10 +26,10 @@ $app->post('/login', $guest(), function() use ($app){
       if($user && $app->hash->passwordCheck($password, $user->password)) {
          $_SESSION[$app->config->get('auth.session')] = $user->id;
 
-         $app->flash('global', 'You are now signed in');
+         $app->flash('global', 'You are now signed in.');
          return $app->response->redirect($app->urlFor('home'));
       } else {
-         $app->flash('global', 'Username or password incorrect');
+         $app->flash('global', 'Username or password incorrect.');
          return $app->response->redirect($app->urlFor('auth.login'));
       }
    }

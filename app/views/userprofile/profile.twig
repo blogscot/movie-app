@@ -21,8 +21,8 @@
     <div> <a href="{{ urlFor('advert.viewbyuser') }}">View My Adverts</a> </div>
     <div> <a href="{{ urlFor('advert.transactions') }}">View Transactions</a> </div>
     <hr>
-    <div> <a href="{{ urlFor('auth.password')}}">Change Password</a> </div>
-    <div> <a href="#">Delete Account</a> </div>
+    <div> <a href="{{ urlFor('auth.password') }}">Change Password</a> </div>
+    <div> <a href="{{ urlFor('auth.delete') }}">Delete Account</a> </div>
     </div>
     {% if auth.isAdmin %}
       <div class="well col-sm-3">

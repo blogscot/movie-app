@@ -28,6 +28,12 @@ $app->post('/register', $guest(), function() use ($app){
       'password2' => [$password2, 'required']
    ]);
 
+   $v->addFieldMessages([
+     'password1' => [
+       'matches' => 'The two passwords must match'
+     ]
+   ]);
+
    if($v->passes()){
       $identifier = $app->randomLib->generateString(128);
 

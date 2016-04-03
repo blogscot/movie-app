@@ -51,6 +51,16 @@ class User extends Eloquent{
       return $user->username;
    }
 
+   // Delete the users account.
+   // Transactions records are not deleted.
+   public function deleteAccount() {
+     // let's assume, no monies refunded
+     $this->wallet()->delete();
+     $this->adverts()->delete();
+     $this->permissions()->delete();
+     return $this->delete();
+   }
+
    // Relationships
 
    public function permissions(){
