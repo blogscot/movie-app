@@ -27,8 +27,10 @@
         <td>{{ advert.title }}</td>
         <td>{{ advert.price|number_format(2,'.',',') }}</td>
         <td>{{ advert.expires_on|date('d-m-Y') }}</td>
-        <td><a href="{{ urlFor('advert.update', {id: advert.id}) }}">Update</a></td>
-        <td><a href="{{ urlFor('advert.remove', {id: advert.id}) }}">Remove</a></td>
+        <td><a href="{{ urlFor('advert.update', {id: advert.id}) }}"><button
+          class="btn btn-primary btn-sm" type="button" name="button">Update</button></a></td>
+        <td><a href="{{ urlFor('advert.remove', {id: advert.id}) }}"><button
+          class="btn btn-danger btn-sm" type="button" name="button">Remove</button></a></td>
       </tr>
       </tbody>
     {% endfor %}

@@ -26,10 +26,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {% if auth %}
-          {% if auth.isAdmin %}
-          <li><a href="#">Admin User</a></li>
-          {% endif %}
-          <li><a href="{{ urlFor('auth.logout') }}">Hello {{ auth.username|capitalize}} (Logout)</a></li>
+          <li><a href="{{ urlFor('auth.logout') }}">Logout {{ auth.username|capitalize}}</a></li>
         {% else %}
           <li><a href="{{ urlFor('auth.login') }}">Login</a></li>
           <li><a href="{{ urlFor('auth.register') }}">Register</a></li>
