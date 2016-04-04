@@ -77,7 +77,7 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
     }
 
     $app->flash('global', 'New Advert added!');
-    return $app->response->redirect($app->urlFor('advert.viewall'));
+    return $app->response->redirect($app->urlFor('user.profile'));
   }
 
   $app->render('advert/add.twig', [

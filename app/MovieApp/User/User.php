@@ -50,7 +50,9 @@ class User extends Eloquent{
    // Get the username for the a user's $id
    public function getUsernameById($id) {
       $user = $this->getUserById($id);
-      return $user->username;
+      // Users who have deleted their account will still have transaction entries
+      // but null entires in the users table
+      return $user != null ? $user->username : "Deleted User";
    }
 
    // Delete the users account.

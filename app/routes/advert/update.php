@@ -11,6 +11,7 @@ $app->get('/update/:id', $authenticated(), function($id) use ($app) {
 $app->post('/update/:id', $authenticated(), function($id) use ($app) {
 
     $request = $app->request;
+    $advert = $app->advert->where('id', $id)->first();
 
     $title = $request->post('title');
     $price = $request->post('price');
@@ -35,7 +36,6 @@ $app->post('/update/:id', $authenticated(), function($id) use ($app) {
         // store user uploads in their own directory
         $file_url = $app->config->get('app.uploads') . $app->auth->username . "/" . $fileToUpload;
 
-        $advert = $app->advert->where('id', $id)->first();
         $advert->title = $title;
         $advert->price = $price;
         $advert->image_url = $file_url;
@@ -45,16 +45,16 @@ $app->post('/update/:id', $authenticated(), function($id) use ($app) {
         $advert->save();
 
         $app->flash('global', 'Advert updated!');
-        $app->response->redirect($app->urlFor('advert.viewbyuser'));
+        $app->response->redirect($app->urlFor('user.profile'));
       } else {
         // display upload flash error message
-        return $app->response->redirect($app->urlFor('advert.add'));
+        return $app->response->redirect($app->urlFor('advert.update'));
       }
     }
 
-    $app->render('advert/add.twig', [
+    $app->render('advert/update.twig', [
        'errors' => $v->errors(),
-       'request' => $request
+       'advert' => $advert
     ]);
 
 })->name('advert.update.post');
