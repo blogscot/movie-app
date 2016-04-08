@@ -9,7 +9,7 @@ $app->get('/remove/:id', $authenticated(), function($id) use ($app) {
   }
 
   $adverts = $app->advert->get();
-  $app->render('advert/viewall.twig', [
+  $app->render('advert/viewbyuser.twig', [
     'adverts' => $adverts
     ]);
 })->name('advert.remove');

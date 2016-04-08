@@ -7,6 +7,9 @@
   h2>span {
     font-size: 0.6em;
   }
+  .well {
+    margin: 20px;
+  }
 {% endblock %}
 
 {% block content %}
@@ -19,8 +22,8 @@
   <div class="row">
     <div class="well col-sm-3">
     <label>Movies</label>
+    <div> <a href="{{ urlFor('advert.add') }}">Create New Advert</a> </div>
     <div> <a href="{{ urlFor('advert.viewall') }}">Buy Movies</a> </div>
-    <div> <a href="{{ urlFor('advert.add') }}">Advertise Movie</a> </div>
     </div>
     <div class="well col-sm-3">
     <label>Account</label>

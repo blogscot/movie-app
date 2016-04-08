@@ -19,6 +19,9 @@
 
 <div class="row">
   {# show sold and unsold movies #}
+  {% if adverts|length == 0 %}
+    <p class="well text-center text-info"> We appear to be sold out! </p>
+  {% endif %}
   {% for advert in adverts %}
       <div class="col-sm-3 advert">
         <img class="img-thumbnail" src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
