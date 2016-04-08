@@ -5,6 +5,12 @@
   min-height: 420px;
   margin-top: 15px;
 }
+@media screen and (max-width: 768px) {
+  button:nth-of-type(1) {
+    margin-top: 5px;
+    float: right;
+  }
+}
 {% endblock %}
 
 {% block title %}Buy Movies{% endblock %}
@@ -17,12 +23,17 @@
     <p>Please login to see more details</p>
   {% endif %}
 
-  <form class="form-horizontal" role="form" action="{{ urlFor('advert.viewall.post')}}" method="post">
-    <div class="form-group">
-      <label class="control-label col-xs-offset-1 col-xs-2 col-sm-1" for="search_term">Search:</label>
-      <div class="col-xs-7 col-sm-5">
-        <input class="form-control" type="text" name="search_term" placeholder="Search by Title, Category or Seller">
-      </div>
+  <form class="form-inline" role="form" action="{{ urlFor('advert.viewall.post')}}" method="post">
+    <div class="form-group col-sm-offset-1 col-sm-5">
+      <label for="search_term">Search:</label>
+      <input type="text" class="form-control" name="search_term" placeholder="Search by Title, Category or Seller">
+    </div>
+    <div class="form-group col-sm-6">
+      <label for="order">Price:</label>
+      <select class="form-control" name="order">
+        <option selected="selected" value="asc">Lowest First</option>
+        <option value="desc">Highest First</option>
+      </select>
       <button class="btn btn-primary" type="submit">Go</button>
     </div>
     <input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">

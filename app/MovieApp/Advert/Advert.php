@@ -37,12 +37,13 @@ class Advert extends Eloquent {
   }
 
   // get a filtered list of adverts, by username, category or title
-  public function find_by($search_term) {
+  public function find_by($search_term, $orderBy="price", $order="asc") {
     return $this
       ->join('users', 'users.id', '=', 'adverts.seller_id')
       ->where('username', 'like', '%'.$search_term.'%')
       ->orWhere('category', 'like', '%'.$search_term.'%')
       ->orWhere('title', 'like', '%'.$search_term.'%')
+      ->orderBy($orderBy, $order)
       ->get();
   }
 
