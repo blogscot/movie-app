@@ -31,7 +31,7 @@
        </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1" for="fileToUpload">Filename: </label>
+      <label class="control-label col-sm-offset-2 col-sm-2" for="fileToUpload">Filename: </label>
       <div class="col-sm-5">
         <input type="file" name="fileToUpload">
         <div class="text-danger col-sm-5">
@@ -40,13 +40,13 @@
       </div>
    </div>
     <div class="form-group">
-       <label class="control-label col-sm-offset-3 col-sm-1" for="image_url">Image:</label>
+       <label class="control-label col-sm-offset-2 col-sm-2" for="image_url">Image:</label>
        <div class="col-sm-5">
          <img class="img-thumbnail" src="{{ advert.image_url }}" alt="Advert Image">
        </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1" for="title">Category: </label>
+      <label class="control-label col-sm-offset-2 col-sm-2" for="title">Category: </label>
       <div class="col-sm-5">
         <select class="form-control" class="default_category" name="category">
           <option value="Action" {% if advert.category == 'Action' %} selected {% endif %}>Action</option>
@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-offset-3 col-sm-1" for="title">Description: </label>
+      <label class="control-label col-sm-offset-2 col-sm-2" for="title">Description: </label>
       <div class="col-sm-5">
         <textarea class="form-control" name="description" rows="8" cols="40">{{ advert.description }}</textarea>
       </div>
