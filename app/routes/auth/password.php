@@ -20,6 +20,12 @@ $app->post('/changepassword', $authenticated(), function() use ($app){
       'password_confirm' => [$password_confirm, 'required|matches(password_new)'],
    ]);
 
+   $v->addRuleMessages([
+     'matches' => 'Both passwords must match',
+     'min' => 'Minimum password length is 8',
+     'max' => 'Password length is too long'
+     ]);
+
    if($v->passes()) {
       $user = $app->auth;
 
