@@ -76,8 +76,12 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
       $transaction->save();
 
     } else {
-      $app->flash('global', 'Please add funds to complete this purchase.');
-      return $app->response->redirect($app->urlFor('advert.add'));
+      $app->flashNow('global', 'Please add funds to complete this purchase.');
+      $app->render('advert/add.twig', [
+         'errors' => $v->errors(),
+         'request' => $request
+      ]);
+      return;
     }
 
     $app->flash('global', 'New Advert added!');

@@ -1,10 +1,9 @@
 {% extends 'templates/default.twig' %}
 
-{% block title %}View My Adverts{% endblock %}
+{% block title %}User Adverts{% endblock %}
 
 {% block content %}
-  <h2>My Adverts</h2>
-  <hr>
+  <h2>{{username|capitalize}}'s Adverts</h2>
 
   {% if adverts is empty %}
     <p class="well text-danger text-center">You currently have no adverts.</p>

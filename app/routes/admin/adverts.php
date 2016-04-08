@@ -5,6 +5,7 @@ $app->get('/viewadverts/:id', $admin(), function($id) use ($app) {
   $adverts = $user->adverts;
 
   $app->render('admin/adverts.twig', [
+    'username' => $user->username,
     'adverts' => $adverts
   ]);
 

@@ -22,6 +22,6 @@ require INC_ROOT . '/app/routes/advert/remove.php';
 require INC_ROOT . '/app/routes/advert/update.php';
 require INC_ROOT . '/app/routes/advert/view.php';
 require INC_ROOT . '/app/routes/advert/viewall.php';
-require INC_ROOT . '/app/routes/advert/viewbyuser.php';
+require INC_ROOT . '/app/routes/advert/adverts.php';
 
 require INC_ROOT . '/app/routes/errors/404.php';
