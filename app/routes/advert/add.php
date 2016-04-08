@@ -41,7 +41,11 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
       // Upload image file
       if (uploadImageFile($app) == false) {
         // Display upload flash error message
-        return $app->response->redirect($app->urlFor('advert.add'));
+        $app->render('advert/add.twig', [
+           'errors' => $v->errors(),
+           'request' => $request
+        ]);
+        return;
       }
 
       // Deduct the cost of the adverts
@@ -89,9 +93,16 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
 
 function uploadImageFile($app) {
   // each user gets their own subfolder
-  $target_dir = "uploads/" . $app->auth->username . "/";
+  $upload_dir = "uploads/";
+  $target_dir = $upload_dir . $app->auth->username . "/";
+  $maximum_file_upload_size = 100000;
 
   if (!is_dir($target_dir)) {
+    // Is this the very first run?
+    if (!is_dir($upload_dir)) {
+      mkdir($upload_dir);
+    }
+    // create dir for new user
     mkdir($target_dir);
   }
 
@@ -104,27 +115,27 @@ function uploadImageFile($app) {
   // is the file a image?
   $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
   if($check == false) {
-    $app->flash('global', 'File is not an image.');
+    $app->flashNow('global', 'File is not an image.');
     return false;
   }
 
   // Check file size
-  if ($_FILES["fileToUpload"]["size"] > 100000) {
-      $app->flash('global', 'Sorry, your file is too large.');
+  if ($_FILES["fileToUpload"]["size"] > $maximum_file_upload_size) {
+      $app->flashNow('global', 'Sorry, your file is too large.');
       return false;
   }
   // Allow certain file formats
   if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
   && $imageFileType != "gif" ) {
-    $app->flash('global', 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.');
+    $app->flashNow('global', 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.');
     return false;
   }
 
   if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    $app->flash('global', 'The file '. basename( $_FILES["fileToUpload"]["name"]). ' has been uploaded.');
+    $app->flashNow('global', 'The file '. basename( $_FILES["fileToUpload"]["name"]). ' has been uploaded.');
     return true;
   } else {
-    $app->flash('global', 'Sorry, there was an error uploading your file.');
+    $app->flashNow('global', 'Sorry, there was an error uploading your file.');
     return false;
   }
 }
