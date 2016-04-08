@@ -1,0 +1,27 @@
+{% extends 'templates/default.twig' %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+
+   <h2>Frequently Asked Questions</h2>
+
+   <hr>
+
+     <div class="faq-question well well-sm">Q. What does the number after my username mean, e.g. Sarah (0)?</div>
+     <div class="faq-answer">This number shows the number of times you have voted. When you have voted enough times you'll be able to create you own polls when you become a priviliged user.</div>
+
+     <hr>
+     <a href="{{ urlFor('home') }}"><button class="btn btn-primary back-button" type="button" name="button">Back</button></a>
+
+     <script type="text/javascript">
+     $(document).ready(function() {
+      $('.faq-answer').hide();
+
+      $('.faq-question').click(function() {
+        $(this).next('.faq-answer').toggle(350);
+      });
+     });
+     </script>
+
+{% endblock %}
