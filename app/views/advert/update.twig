@@ -1,7 +1,7 @@
 {% extends 'templates/default.twig' %}
 
 {% block style %}
-  img { max-width: 250px; }
+  .img-thumbnail { max-width: 250px; }
 {% endblock %}
 
 {% block title %}Update Advert{% endblock %}
@@ -48,17 +48,18 @@
     <div class="form-group">
       <label class="control-label col-sm-offset-2 col-sm-2" for="title">Category: </label>
       <div class="col-sm-5">
-        <select class="form-control" class="default_category" name="category">
-          <option value="Action" {% if advert.category == 'Action' %} selected {% endif %}>Action</option>
-          <option value="Comedy" {% if advert.category == 'Comedy' %} selected {% endif %}>Comedy</option>
-          <option value="Crime" {% if advert.category == 'Crime' %} selected {% endif %}>Crime</option>
-          <option value="Drama" {% if advert.category == 'Drama' %} selected {% endif %}>Drama</option>
-          <option value="Documentary" {% if advert.category == 'Documentary' %} selected {% endif %}>Documentary</option>
-          <option value="Family" {% if advert.category == 'Family' %} selected {% endif %}>Family</option>
-          <option value="Horror" {% if advert.category == 'Horror' %} selected {% endif %}>Horror</option>
-          <option value="Romance" {% if advert.category == 'Romance' %} selected {% endif %}>Romance</option>
-          <option value="Scifi" {% if advert.category == 'Scifi' %} selected {% endif %}>SciFi</option>
-          <option value="Thriller" {% if advert.category == 'Thriller' %} selected {% endif %}>Thriller</option>
+        <select class="form-control" name="category">
+          <option value="Action" {{ advert.category == 'Action' ? 'selected' }}>Action</option>
+          <option value="Comedy" {{ advert.category == 'Comedy' ? 'selected' }}>Comedy</option>
+          <option value="Crime" {{ advert.category == 'Crime' ? 'selected' }}>Crime</option>
+          <option value="Drama" {{ advert.category == 'Drama' ? 'selected' }}>Drama</option>
+          <option value="Documentary" {{ advert.category == 'Documentary' ? 'selected' }}>Documentary</option>
+          <option value="Family" {{ advert.category == 'Family' ? 'selected' }}>Family</option>
+          <option value="Fantasy" {{ advert.category == 'Fantasy' ? 'selected' }}>Fantasy</option>
+          <option value="Horror" {{ advert.category == 'Horror' ? 'selected' }}>Horror</option>
+          <option value="Romance" {{ advert.category == 'Romance' ? 'selected' }}>Romance</option>
+          <option value="Scifi" {{ advert.category == 'Scifi' ? 'selected' }}>SciFi</option>
+          <option value="Thriller" {{ advert.category == 'Thriller' ? 'selected' }}>Thriller</option>
         </select>
       </div>
     </div>

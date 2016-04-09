@@ -19,10 +19,10 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
   $description = $request->post('description');
 
   $v->validate([
-    'title' => [$title, 'required|min(3)|max(40)'],
-    'price' => [$price, 'required|number|min(0)'],
+    'title|Title' => [$title, 'required|min(3)|max(40)'],
+    'price|Price' => [$price, 'required|number|min(0)'],
     'duration' => [$duration, 'required|int|between(7,28)'],
-    'fileToUpload' => [$fileToUpload, 'required|max(128)'],
+    'fileToUpload|Image file' => [$fileToUpload, 'required|max(128)'],
     'category' => [$category, 'required|max(20)'],
     'description' => [$description, 'max(512)']
   ]);

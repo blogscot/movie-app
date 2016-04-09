@@ -22,9 +22,9 @@ $app->post('/update/:id', $authenticated(), function($id) use ($app) {
     $v = $app->validation;
 
     $v->validate([
-      'title' => [$title, 'required|min(3)|max(40)'],
-      'price' => [$price, 'required|number|min(0)'],
-      'fileToUpload' => [$fileToUpload, 'required|max(128)'],
+      'title|Title' => [$title, 'required|min(3)|max(40)'],
+      'price|Price' => [$price, 'required|number|min(0)'],
+      'fileToUpload|Image file' => [$fileToUpload, 'required|max(128)'],
       'category' => [$category, 'required|max(20)'],
       'description' => [$description, 'max(512)']
     ]);
