@@ -27,8 +27,10 @@ class Advert extends Eloquent {
     return $this->get();
   }
 
-  public function get_items($amount) {
-    return $this->take($amount)->get();
+  public function get_items($amount=8, $orderBy="title", $order="asc") {
+    return $this
+      ->orderBy($orderBy, $order)
+      ->take($amount)->get();
   }
 
   // find an advert by its id

@@ -20,11 +20,15 @@ body
 h2
   margin-bottom: 50px
 
+hr
+  border-color: $default-background
+  opacity: 0.3
+
+
 .navbar-static-bottom
   margin-bottom: 0
 
 img.img-thumbnail
-  max-width: 184px
   border: 1px solid gold
 
 img.img-thumbnail:hover
@@ -40,8 +44,6 @@ a.back-btn
   color: #fff
   text-decoration: none !important
 
-// .well
-//   margin: 20px
 
 // faq styles
 
@@ -60,4 +62,46 @@ a.back-btn
   margin-top: 10px
   margin-bottom: 20px
   font-size: 1.2em
-  
+
+
+/* Portrait & landscape phone */
+@media screen and (min-width: 0px) and (max-width: 480px)
+
+  h1
+    font-size: 1.8em
+
+  .homepage img.img-thumbnail
+    max-width: 74px
+
+  .homepage img.img-thumbnail:not(:first-of-type)
+    margin-left: 5px
+
+
+/* Landscape phone to portrait tablet */
+@media screen and (min-width: 481px) and (max-width: 768px)
+
+  .homepage img.img-thumbnail
+    max-width: 114px
+
+  .homepage img.img-thumbnail:not(:first-of-type)
+    margin-left: 40px
+
+
+/* Landscape phone to portrait tablet */
+@media screen and (min-width: 769px) and (max-width: 1200px)
+
+  .homepage img.img-thumbnail
+    max-width: 160px
+
+  .homepage img.img-thumbnail:not(:first-of-type)
+    margin-left: 20px
+
+/* Desktop */
+@media screen and (min-width: 1201px)
+
+  .homepage img.img-thumbnail
+    max-width: 220px
+
+  .homepage img.img-thumbnail:not(:first-of-type)
+    margin-left: 80px
+    

@@ -1,11 +1,8 @@
 {% extends 'templates/default.twig' %}
 
 {% block style %}
-  .advert {
-    min-height: 350px;
-  }
-  .img-thumbnail {
-    margin-bottom: 4px;
+  .row {
+    margin-left: 0px;
   }
 {% endblock %}
 
@@ -16,25 +13,18 @@
 <h1>Buy and Sell Movies</h1>
 
 <hr>
-
-<div class="row">
-  {# show sold and unsold movies #}
-  {% if adverts|length == 0 %}
+<div class="homepage">
+  <div class="row">
+    {# show sold and unsold movies #}
+    {% if adverts|length == 0 %}
     <p class="well text-center text-info"> We appear to be sold out! </p>
-  {% endif %}
-  {% for advert in adverts %}
-      <div class="col-sm-3 advert">
-        <img class="img-thumbnail" src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
-        <div>
-          <label>Title:</label>
-          <span>{{ advert.title }}</span>
-        </div>
-        <div>
-          <label>Price:</label>
-          <span>&pound;{{ advert.price|number_format(2,'.',',') }}</span>
-        </div>
-      </div>
-  {% endfor %}
+    {% endif %}
+  </div>
+  <div class="row">
+    {% for advert in adverts %}
+    <img class="img-thumbnail" src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}
