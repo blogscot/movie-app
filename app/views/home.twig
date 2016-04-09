@@ -32,7 +32,7 @@
   <br>
   <div class="row">
     {% if auth %}
-      <a href="{{ urlFor('user.profile') }}"><h2 class="text-center text info well well-sm">Welcome {{auth.username|capitalize}}</h2></a>
+      <h2 data-toggle="tooltip" data-placement="auto" title="Welcome!" class="text-center text info well well-sm">Welcome {{auth.username|capitalize}}</h2>
       <a data-toggle="tooltip" data-placement="auto" title="Visit your dashboard" href="{{ urlFor('user.profile') }}"><h2 class="text-center text info well well-sm">Dashboard</h2></a>
     {% else %}
       <a data-toggle="tooltip" data-placement="auto" title="Click here to login" href="{{ urlFor('auth.login') }}"><h2 class="text-center text info well well-sm">Login</h2></a>
