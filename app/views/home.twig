@@ -4,13 +4,16 @@
   .row {
     margin-left: 0px;
   }
+  a:hover {
+    text-decoration: none;
+  }
 {% endblock %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
 
-<h1>Buy and Sell Movies</h1>
+<h1 class="text-center">Love Movies&nbsp; - &nbsp;Buy Movies&nbsp;  -  &nbsp;Sell Movies</h1>
 
 <hr>
 <div class="homepage">
@@ -24,6 +27,18 @@
     {% for advert in adverts %}
     <img class="img-thumbnail" src="{{advert.image_url}}" alt="Image for {{advert.title}}" />
     {% endfor %}
+  </div>
+
+  <br>
+  <div class="row">
+    {% if auth %}
+      <a href="{{ urlFor('user.profile') }}"><h2 class="text-center text info well well-sm">Welcome {{auth.username|capitalize}}</h2></a>
+      <a data-toggle="tooltip" data-placement="auto" title="Visit your dashboard" href="{{ urlFor('user.profile') }}"><h2 class="text-center text info well well-sm">Dashboard</h2></a>
+    {% else %}
+      <a data-toggle="tooltip" data-placement="auto" title="Click here to login" href="{{ urlFor('auth.login') }}"><h2 class="text-center text info well well-sm">Login</h2></a>
+      <a data-toggle="tooltip" data-placement="auto" title="Click here to register" href="{{ urlFor('auth.register') }}"><h2 class="text-center text info well well-sm">Register</h2></a>
+    {% endif %}
+
   </div>
 </div>
 

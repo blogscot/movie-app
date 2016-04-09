@@ -3,7 +3,7 @@
 $app->get('/userwallet', $authenticated(), function() use ($app) {
   $wallet = $app->wallet->get_wallet($app->auth->id);
 
-  $app->render('userprofile/wallet.twig', [
+  $app->render('dashboard/wallet.twig', [
     'wallet' => $wallet
   ]);
 })->name('user.wallet');
@@ -34,7 +34,7 @@ $app->post('/walletdeposit', $authenticated(), function() use ($app) {
     return $app->response->redirect($app->urlFor('user.wallet'));
   }
 
-  $app->render('userprofile/wallet.twig', [
+  $app->render('dashboard/wallet.twig', [
      'errors' => $v->errors(),
      'wallet' => $wallet
   ]);
@@ -72,7 +72,7 @@ $app->post('/walletwithdraw', $authenticated(), function() use ($app) {
     }
   }
 
-  $app->render('userprofile/wallet.twig', [
+  $app->render('dashboard/wallet.twig', [
      'errors' => $v->errors(),
      'wallet' => $wallet
   ]);

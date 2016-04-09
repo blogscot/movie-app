@@ -13,8 +13,8 @@ require INC_ROOT . '/app/routes/auth/password.php';
 require INC_ROOT . '/app/routes/auth/register.php';
 require INC_ROOT . '/app/routes/auth/delete.php';
 
-require INC_ROOT . '/app/routes/userprofile/profile.php';
-require INC_ROOT . '/app/routes/userprofile/wallet.php';
+require INC_ROOT . '/app/routes/dashboard/profile.php';
+require INC_ROOT . '/app/routes/dashboard/wallet.php';
 
 require INC_ROOT . '/app/routes/advert/add.php';
 require INC_ROOT . '/app/routes/advert/transactions.php';
