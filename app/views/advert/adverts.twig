@@ -5,8 +5,8 @@
 {% block content %}
   <h2>My Adverts</h2>
   <hr>
-    {% include 'templates/partials/_adverts.php' %}
+    {% include 'templates/partials/_adverts.twig' with {'sellerId': auth.id, 'backPage': 'normalUser'} %}
 
-  <a href="{{urlFor('user.profile')}}"> <button class="btn btn-primary" type="button" name="button">Back</button> </a>
-
+  <a href="{{ urlFor('advert.add') }}"> <button class="btn btn-primary" type="button" name="button" data-toggle="tooltip" data-placement="auto" title="Create new advert">Create</button> </a>
+  <a href="{{urlFor('admin.viewusers')}}"> <button class="btn btn-primary" type="button" name="button">Back</button> </a>
 {% endblock %}

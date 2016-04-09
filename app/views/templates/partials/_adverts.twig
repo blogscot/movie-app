@@ -22,7 +22,7 @@
         <td>{{ advert.expires_on|date('d-m-Y') }}</td>
         <td><a href="{{ urlFor('advert.update', {id: advert.id}) }}"><button
           class="btn btn-primary btn-sm" type="button" name="button">Update</button></a></td>
-        <td><a href="{{ urlFor('advert.remove', {id: advert.id}) }}"><button
+        <td><a href="{{ urlFor('advert.remove', {id: advert.id, 'sellerId': sellerId,'backPage': backPage}) }}"><button
           class="btn btn-danger btn-sm" type="button" name="button">Remove</button></a></td>
       </tr>
       </tbody>

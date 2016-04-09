@@ -5,7 +5,8 @@
 {% block content %}
   <h2>{{username|capitalize}}'s Adverts</h2>
 
-    {% include 'templates/partials/_adverts.php' %}
+    {# The template can be used by an admin or a normal user #}
+    {% include 'templates/partials/_adverts.twig' with {'sellerId': userId,'backPage': 'adminPage'} %}
 
   <a href="{{urlFor('admin.viewusers')}}"> <button class="btn btn-primary" type="button" name="button">Back</button> </a>
 

@@ -30,7 +30,7 @@ $app->post('/walletdeposit', $authenticated(), function() use ($app) {
     $transaction->balance = $wallet->balance;
     $transaction->save();
 
-    $app->flash('global', 'Desposit successful');
+    $app->flash('global', 'Deposit successful');
     return $app->response->redirect($app->urlFor('user.wallet'));
   }
 

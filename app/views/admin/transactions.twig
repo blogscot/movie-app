@@ -14,7 +14,7 @@
   {% if transactions is empty %}
     <p class="well text-danger text-center">You have no transactions. So sad!</p>
   {% else %}
-    {% include 'templates/partials/_transactions.php' %}
+    {% include 'templates/partials/_transactions.twig' %}
   {% endif %}
 
   <a href="{{urlFor('admin.viewusers')}}"> <button class="btn btn-primary" type="button" name="button">Back</button> </a>

@@ -38,6 +38,11 @@ class Advert extends Eloquent {
     return $this->where('id', $id)->first();
   }
 
+  // find adverts for a user by $id
+  public function find_seller_adverts_by_id($id) {
+    return $this->where('seller_id', $id)->get();
+  }
+
   // get a filtered list of adverts, by username, category or title
   public function find_by($search_term, $orderBy="price", $order="asc") {
     return $this
