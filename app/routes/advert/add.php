@@ -84,7 +84,7 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
       return;
     }
 
-    $app->flash('global', 'New Advert added!');
+    $app->flash('global', 'New advert added!');
     return $app->response->redirect($app->urlFor('user.profile'));
   }
 

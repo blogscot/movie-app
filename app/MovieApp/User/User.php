@@ -75,9 +75,11 @@ class User extends Eloquent{
      return $this->hasMany('MovieApp\Advert\Advert', 'seller_id');
    }
 
-   public function all_transactions() {
+   public function all_transactions($order="desc") {
       return Transaction::where('seller_id', $this->id)
-        ->orWhere('buyer_id', $this->id)->get();
+        ->orWhere('buyer_id', $this->id)
+        ->orderBy('created_at', $order)
+        ->get();
    }
 
   public function transactions() {
