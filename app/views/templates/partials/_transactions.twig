@@ -13,7 +13,7 @@
   <tbody>
     {% for transaction in transactions %}
     <tr>
-      <td> {{ transaction.updated_at|date("d/m/Y") }} </td>
+      <td> {{ transaction.updated_at|date("d-m-Y H:i:s") }} </td>
       <td> {{ transaction.reason }} </td>
       <td>
         {% if transaction.seller_id == 0 %}
