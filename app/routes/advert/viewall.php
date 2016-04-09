@@ -17,6 +17,8 @@ $app->post('/viewadverts', function() use ($app) {
   $adverts = $app->advert->find_by($search_term, $orderBy, $order);
 
   $app->render('advert/viewall.twig', [
-    'adverts' => $adverts
+    'adverts' => $adverts,
+    'search_term' => $search_term,
+    'order' => $order
   ]);
 })->name('advert.viewall.post');
