@@ -32,7 +32,7 @@
     <div> <a href="{{ urlFor('advert.transactions') }}">View Transactions</a> </div>
     <hr>
     <div> <a href="{{ urlFor('auth.password') }}">Change Password</a> </div>
-    <div> <a data-toggle="tooltip" title="Careful now!" href="{{ urlFor('auth.delete') }}">Delete Account</a> </div>
+    <div> <a data-toggle="tooltip" title="Careful now!" href="{{ urlFor('auth.delete', {'userId': auth.id}) }}">Delete Account</a> </div>
     </div>
     {% if auth.isAdmin %}
       <div class="well col-sm-3">

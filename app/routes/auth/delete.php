@@ -1,18 +1,19 @@
 <?php
 
-$app->get('/byebye', $authenticated(), function() use ($app) {
+$app->get('/byebye/:userId', $authenticated(), function($userId) use ($app) {
   unset($_SESSION[$app->config->get('auth.session')]);
 
-  $app->auth->deleteAccount();
-  deleteUserImageFiles($app);
+  $user = $app->auth->getUserById($userId);
+  $user->deleteAccount();
+  deleteUserImageFiles($user->username);
 
   $app->flash('global', 'Your account has been successfully deleted.');
   return $app->response->redirect($app->urlFor('auth.login'));
 })->name('auth.delete');
 
-function deleteUserImageFiles($app) {
+function deleteUserImageFiles($username) {
   // each user has their own subfolder
-  $target_dir = "uploads/" . $app->auth->username . "/";
+  $target_dir = "uploads/" . $username . "/";
 
   $files = glob("$target_dir/*.*");
   foreach ($files as $file) {

@@ -35,7 +35,7 @@
               {id: user.id})}}"><button class="btn btn-primary btn-sm" type="button"
               name="button">View</button></a> </td>
             <td class="text-center"> <a data-toggle="tooltip" title="Careful now!"
-              href="{{ urlFor('auth.delete') }}"><button class="btn btn-danger btn-sm"
+              href="{{ urlFor('auth.delete', {'userId': user.id}) }}"><button class="btn btn-danger btn-sm"
               type="button" name="button">Delete</button></a> </td>
           </tr>
           {% endfor %}
