@@ -15,7 +15,7 @@ $app->post('/walletdeposit', $authenticated(), function() use ($app) {
   $funds = $app->request->post('funds');
 
   $v->validate([
-    'funds' => [$funds, 'required|number|min(0)'],
+    'funds' => [$funds, 'required|number|min(0, number)'],
   ]);
 
   if ($v->passes()) {
@@ -47,7 +47,7 @@ $app->post('/walletwithdraw', $authenticated(), function() use ($app) {
   $funds = $app->request->post('funds');
 
   $v->validate([
-    'funds' => [$funds, 'required|number|min(0)'],
+    'funds|Funds' => [$funds, 'required|number|min(0, number)'],
   ]);
 
   if ($v->passes()) {

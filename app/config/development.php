@@ -7,7 +7,7 @@ return [
     'uploads' => 'http://localhost:8888/uploads/',
     'hash' => [
       'algo' => PASSWORD_BCRYPT,
-      'cost' => 10
+      'cost' => 12
     ]
   ],
 
