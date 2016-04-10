@@ -14,6 +14,8 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
   $advert = $app->advert->find_by_id($id);
   $buyer_id = $app->auth->id;
   $seller_id = $advert->seller_id;
+  $seller_username = $app->auth->getUsernameById($seller_id);
+  $buyer_username = $app->auth->getUsernameById($buyer_id);
   $wallet_buyer = $app->auth->wallet;
   $wallet_seller = $app->wallet->get_wallet($seller_id);
   $transaction = $app->transaction;
@@ -35,7 +37,7 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
     // Save purchase and sale transactions
     $data = [[
       'title' => $advert->title,
-      'reason' => "Purchase",
+      'reason' => "Seller " . ucfirst($seller_username),
       'buyer_id' => $buyer_id,
       'seller_id' => 0,
       'amount' => $advert->price,
@@ -43,7 +45,7 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
     ],
     [
       'title' => $advert->title,
-      'reason' => "Sale",
+      'reason' => "Buyer " . ucfirst($buyer_username),
       'buyer_id' => 0,
       'seller_id' => $seller_id,
       'amount' => $advert->price,
