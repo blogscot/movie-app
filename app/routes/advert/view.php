@@ -1,7 +1,5 @@
 <?php
 
-use MovieApp\Transaction\Transaction;
-
 $app->get('/viewadvert/:id', $authenticated(), function($id) use ($app) {
   $advert = $app->advert->find_by_id($id);
 
@@ -36,9 +34,8 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
 
     $now = date('Y/m/d H:i:s');
 
-    // Eloquent will overwrite subsequent saves to the same table
-    // so this hack is being used to update to records at the same
-    // time.
+    // Eloquent will overwrite data with subsequent saves to the same table
+    // so this hack is being used to update two records at the same time.
 
     // Save purchase and sale transactions
     $data = [[
@@ -63,7 +60,7 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
     ]
   ];
 
-  Transaction::insert($data);
+  $transaction->insert($data);
 
     $app->flash('global', 'Your purchase is complete.');
     return $app->response->redirect($app->urlFor('advert.viewall'));
