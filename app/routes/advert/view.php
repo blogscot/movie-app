@@ -34,6 +34,12 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
     $advert->isSold = true;
     $advert->save();
 
+    $now = date('Y/m/d H:i:s');
+
+    // Eloquent will overwrite subsequent saves to the same table
+    // so this hack is being used to update to records at the same
+    // time.
+
     // Save purchase and sale transactions
     $data = [[
       'title' => $advert->title,
@@ -41,7 +47,9 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
       'buyer_id' => $buyer_id,
       'seller_id' => 0,
       'amount' => $advert->price,
-      'balance' => $wallet_buyer->balance
+      'balance' => $wallet_buyer->balance,
+      'created_at' => $now,
+      'updated_at' => $now
     ],
     [
       'title' => $advert->title,
@@ -49,7 +57,9 @@ $app->post('/viewadvert/:id', $authenticated(), function($id) use ($app) {
       'buyer_id' => 0,
       'seller_id' => $seller_id,
       'amount' => $advert->price,
-      'balance' => $wallet_seller->balance
+      'balance' => $wallet_seller->balance,
+      'created_at' => $now,
+      'updated_at' => $now
     ]
   ];
 
