@@ -1,11 +1,17 @@
 {% extends 'templates/default.twig' %}
 
+{% block style %}
+  th {
+    text-align: center;
+  }
+{% endblock %}
+
 {% block title %}View Users{% endblock %}
 
 {% block content %}
 
-  <div class="row users-table">
-    <div class="col-sm-9">
+  <div class="row">
+    <div class="col-sm-12">
       <h2>View Users</h2>
       <table class="table table-bordered table-hover table-striped table-compact">
         <thead>
