@@ -25,7 +25,7 @@ session_start();
 date_default_timezone_set("Europe/London");
 
 error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+ini_set('display_errors', 'Off');
 
 define('INC_ROOT', dirname(__DIR__));
 

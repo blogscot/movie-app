@@ -5,10 +5,10 @@
     <table class="table table-bordered table-condensed table-hover">
       <thead>
       <tr>
-        <th><strong>Category</strong></th>
-        <th><strong>Movie Title</strong></th>
-        <th><strong>Price</strong></th>
-        <th><strong>Expires on</strong></th>
+        <th class="text-center"><strong>Category</strong></th>
+        <th class="text-center"><strong>Movie Title</strong></th>
+        <th class="text-center"><strong>Price</strong></th>
+        <th class="text-center"><strong>Expires on</strong></th>
         <th></th>
         <th></th>
       </tr>
@@ -16,13 +16,13 @@
     {% for advert in adverts %}
       <tbody>
       <tr>
-        <td>{{ advert.category }}</td>
-        <td>{{ advert.title }}</td>
-        <td>&pound;{{ advert.price|number_format(2,'.',',') }}</td>
-        <td>{{ advert.expires_on|date('d-m-Y') }}</td>
-        <td><a href="{{ urlFor('advert.update', {id: advert.id}) }}"><button
+        <td class="text-center">{{ advert.category }}</td>
+        <td class="text-center">{{ advert.title }}</td>
+        <td class="text-center">&pound;{{ advert.price|number_format(2,'.',',') }}</td>
+        <td class="text-center">{{ advert.expires_on|date('d-m-Y') }}</td>
+        <td class="text-center"><a href="{{ urlFor('advert.update', {id: advert.id}) }}"><button
           class="btn btn-primary btn-sm" type="button" name="button">Update</button></a></td>
-        <td><a href="{{ urlFor('advert.remove', {id: advert.id, 'sellerId': sellerId,'backPage': backPage}) }}"><button
+        <td class="text-center"><a href="{{ urlFor('advert.remove', {id: advert.id, 'sellerId': sellerId,'backPage': backPage}) }}"><button
           class="btn btn-danger btn-sm" type="button" name="button">Remove</button></a></td>
       </tr>
       </tbody>

@@ -4,9 +4,10 @@ return [
 
   'app' => [
     'url' => 'http://localhost',
+    'uploads' => 'http://localhost:8888/uploads/',
     'hash' => [
       'algo' => PASSWORD_BCRYPT,
-      'cost' => 10
+      'cost' => 12
     ]
   ],
 
@@ -15,7 +16,7 @@ return [
     'host' => '127.0.0.1',
     'name' => 'advert_db',
     'username' => 'root',
-    'password' => '',
+    'password' => 'root',
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => ''

@@ -4,16 +4,16 @@
 
 {% block content %}
 
-  <div class="row">
+  <div class="row users-table">
     <div class="col-sm-9">
       <h2>View Users</h2>
       <table class="table table-bordered table-hover table-striped table-compact">
         <thead>
           <tr>
-            <th> Username </th>
-            <th> Member Since </th>
-            <th> Firstname </th>
-            <th> Surname </th>
+            <th>Username</th>
+            <th class="hidden-xs">Member Since</th>
+            <th class="hidden-xs">Firstname</th>
+            <th class="hidden-xs">Surname</th>
             <th> Email </th>
             <th class="text-center">Transactions</th>
             <th class="text-center">Adverts</th>
@@ -24,9 +24,9 @@
           {% for user in users %}
           <tr>
             <td> {{user.username}} </td>
-            <td> {{user.created_at|date("d-m-Y")}} </td>
-            <td> {{user.firstname}} </td>
-            <td> {{user.surname}} </td>
+            <td class="hidden-xs"> {{user.created_at|date("d-m-Y")}} </td>
+            <td class="hidden-xs"> {{user.firstname}} </td>
+            <td class="hidden-xs"> {{user.surname}} </td>
             <td> <a href="mailto:{{user.email}}">{{user.email}}</a></td>
             <td class="text-center"> <a href="{{urlFor('admin.transactions',
               {id: user.id})}}"><button class="btn btn-primary btn-sm" type="button"

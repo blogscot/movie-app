@@ -20,7 +20,7 @@ $app->post('/addadvert', $authenticated(), function() use ($app) {
 
   $v->validate([
     'title|Title' => [$title, 'required|min(3)|max(40)'],
-    'price|Price' => [$price, 'required|number|min(0)'],
+    'price|Price' => [$price, 'required|number|min(0, number)'],
     'duration' => [$duration, 'required|int|between(7,28)'],
     'fileToUpload|Image file' => [$fileToUpload, 'required|max(128)'],
     'category' => [$category, 'required|max(20)'],
